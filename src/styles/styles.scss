@@ -1,0 +1,33 @@
+@import "./colors";
+@import "./fonts";
+
+body {
+    font-family: "Inter";
+    font-weight: 500;
+    color: $color-black;
+
+    button {
+        border: 0;
+        outline: none;
+        cursor: pointer;
+
+        &.icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+    }
+
+    input {
+        font-family: "Inter";
+        font-size: 12px;
+        width: 100%;
+        border: 0;
+        outline: none;
+
+        &:disabled {
+            background-color: transparent;
+            color: inherit;
+        }
+    }
+}

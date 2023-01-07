@@ -1,0 +1,23 @@
+.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &_code {
+            font-size: 40px;
+        }
+        &_text {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    }
+
+    > :last-child {
+        margin-top: 40px;
+    }
+}

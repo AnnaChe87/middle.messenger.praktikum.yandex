@@ -1,0 +1,11 @@
+@import "src/styles/colors";
+
+.button {
+    width: 100%;
+    background-color: $color-blue;
+    color: $color-white;
+    font-size: 13px;
+    line-height: 13px;
+    padding: 12px;
+    border-radius: 8px;
+}

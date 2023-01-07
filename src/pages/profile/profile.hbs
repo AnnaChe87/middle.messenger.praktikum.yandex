@@ -1,0 +1,23 @@
+<div class="profile">
+    <div class="profile-back">
+        <a href="#/chats">
+            <button class="icon-btn"></button>
+        </a>
+    </div>
+    <div class="profile-info">
+        <div class="profile-info-header">
+            <div class="profile-info-header-avatar"></div>
+            <div class="profile-info-header-name">{{display_name}}</div>
+        </div>
+        <div class="profile-info-content">
+            {{{form}}}
+        </div>
+        <div class="profile-info-actions">
+            {{#each actions}}
+                <div class="profile-info-actions-item">
+                    {{{this}}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

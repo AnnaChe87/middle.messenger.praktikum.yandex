@@ -1,0 +1,12 @@
+@import "src/styles/colors";
+
+.link {
+    color: $color-blue;
+    font-size: 11px;
+    line-height: 11px;
+    text-decoration: none;
+
+    &.red {
+        color: $color-red;
+    }
+}

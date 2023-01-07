@@ -1,0 +1,13 @@
+@import "src/styles/colors";
+
+.search {
+    border: 0;
+    outline: none;
+    background-color: $color-gray-middle;
+    width: 100%;
+    height: 32px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Inter";
+    font-size: 12px;
+}

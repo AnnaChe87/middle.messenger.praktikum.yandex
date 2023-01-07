@@ -1,0 +1,20 @@
+@import "src/styles/colors";
+
+.form-item {
+    width: 100%;
+    margin-bottom: 40px;
+
+    &_label {
+        color: $color-gray-dark;
+        font-size: 9px;
+        line-height: 9px;
+    }
+
+    &_control {
+        width: 100%;
+        margin: 8px 0;
+        input {
+            border-bottom: 1px solid $color-blue;
+        }
+    }
+}

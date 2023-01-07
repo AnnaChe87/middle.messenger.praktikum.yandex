@@ -1,0 +1,16 @@
+@import "src/styles/colors";
+
+.profile-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 0;
+    &:not(:last-child) {
+        border-bottom: 1px solid $color-gray-middle;
+    }
+
+    label {
+        font-size: 13px;
+        line-height: 13px;
+    }
+}

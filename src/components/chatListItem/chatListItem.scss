@@ -1,0 +1,67 @@
+@import "src/styles/colors";
+
+.chat-list-item {
+    display: flex;
+    width: 100%;
+    height: 70px;
+    border-top: 1px solid $color-gray-middle;
+    padding: 10px 0;
+
+    &_avatar {
+        background-color: $color-gray-middle;
+        border-radius: 50%;
+        width: 70px;
+    }
+
+    &_info-message, &_info-time {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+
+        > :last-child {
+            flex: 1 0;
+        }
+    }
+
+    &_info-message {
+        flex: 1;
+
+        .name {
+            font-size: 13px;
+            line-height: 13px;
+        }
+
+        .text {
+            margin-top: 4px;
+            font-size: 13px;
+            line-height: 15px;
+            color: $color-gray-dark;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    &_info-time {
+        .time {
+            font-size: 9px;
+            line-height: 13px;
+        }
+
+        .count-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .count {
+                height: 20px;
+                width: 20px;
+                background-color: $color-blue;
+                border-radius: 50%;
+                font-size: 11px;
+                line-height: 20px;
+                color: $color-white;
+                text-align: center;
+            }
+        }
+    }
+}

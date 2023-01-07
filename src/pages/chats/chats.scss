@@ -1,0 +1,39 @@
+@import "src/styles/colors";
+
+.chats {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: $color-gray-light;
+
+    &-navigation {
+        display: flex;
+        flex-direction: column;
+        flex: 1 310px;
+        border-right: 1px solid $color-gray-dark;
+        padding: 20px 10px;
+
+        &_profile {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        &_search {
+            margin-top: 20px;
+        }
+    }
+
+    &-chat {
+        flex: 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        
+        .not-selected-text {
+            align-self: center;
+            color: $color-gray-dark;
+            font-size: 12px;
+        }
+    }
+}

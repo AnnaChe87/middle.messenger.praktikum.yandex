@@ -1,0 +1,23 @@
+<div class="chats">
+    <div class="chats-navigation">
+        <div class="chats-navigation_profile">
+            {{{link}}}
+        </div>
+        <div class="chats-navigation_search">
+            {{{search}}}
+        </div>
+        <div class="chats-navigation_list">
+            {{#each chats}}
+                {{{this}}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="chats-chat">
+        {{{selectedChat}}}
+        {{#with selectedChat}}
+            {{{selectedChat}}}
+        {{else}}
+            <span class="not-selected-text">Выберите чат, чтобы отправить сообщение</span>
+        {{/with}}
+    </div>
+</div>

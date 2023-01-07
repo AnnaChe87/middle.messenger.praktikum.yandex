@@ -1,0 +1,10 @@
+{
+    "id": 1,
+    "first_name": "Anna",
+    "second_name": "Karenina",
+    "display_name": "Anna",
+    "login": "currentUser",
+    "email": "my@email.com",
+    "phone": "89223332211",
+    "avatar": "/path/to/avatar.jpg"
+}
