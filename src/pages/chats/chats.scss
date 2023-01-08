@@ -13,12 +13,12 @@
         border-right: 1px solid $color-gray-dark;
         padding: 20px 10px;
 
-        &_profile {
+        &-profile {
             display: flex;
             justify-content: flex-end;
         }
 
-        &_search {
+        &-search {
             margin-top: 20px;
         }
     }
@@ -33,7 +33,6 @@
         .not-selected-text {
             align-self: center;
             color: $color-gray-dark;
-            font-size: 12px;
         }
     }
 }

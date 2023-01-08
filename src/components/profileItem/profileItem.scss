@@ -8,9 +8,4 @@
     &:not(:last-child) {
         border-bottom: 1px solid $color-gray-middle;
     }
-
-    label {
-        font-size: 13px;
-        line-height: 13px;
-    }
 }

@@ -8,11 +8,7 @@
         flex-direction: column;
         align-items: center;
 
-        &_code {
-            font-size: 40px;
-        }
-        &_text {
-            font-size: 20px;
+        &-text {
             margin-top: 20px;
         }
     }

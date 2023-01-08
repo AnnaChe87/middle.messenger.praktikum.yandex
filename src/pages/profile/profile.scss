@@ -1,71 +1,48 @@
 @import "src/styles/colors";
 
 .profile {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    
-    &-back {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        width: 64px;
+    flex-direction: column;
+    align-items: center;
+     width: 510px;
+    margin: 0 auto;
 
-        .icon-btn {
-            background-color: $color-blue;
-            background-image: url("../../assets/icons/arrow-left.svg");
+    &-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 60px;
+
+        &-avatar {
+            width: 130px;
+            height: 130px;
+            background-color: $color-gray-middle;
+            border-radius: 50%;
+            background-image: url("../../assets/icons/image.svg");
             background-position: center;
             background-repeat: no-repeat;
         }
+
+        &-name {
+            margin-top: 20px;
+        }
     }
 
-    &-info {
+    &-content {
+        display: flex;
         flex-direction: column;
-        align-items: center;
-        width: 510px;
-        margin: 0 auto;
+        margin-top: 60px;
+    }
 
-        &-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 60px;
+    &-actions {
+        display: flex;
+        flex-direction: column;
+        margin-top: 60px;
 
-            &-avatar {
-                width: 130px;
-                height: 130px;
-                background-color: $color-gray-middle;
-                border-radius: 50%;
-                background-image: url("../../assets/icons/image.svg");
-                background-position: center;
-                background-repeat: no-repeat;
-            }
+        &-item {
+            padding: 10px 0;
 
-            &-name {
-                font-size: 16px;
-                line-height: 16px;
-                font-weight: 600;
-                margin-top: 20px;
-            }
-        }
-
-        &-content {
-            display: flex;
-            flex-direction: column;
-            margin-top: 60px;
-        }
-
-        &-actions {
-            display: flex;
-            flex-direction: column;
-            margin-top: 60px;
-
-            &-item {
-                padding: 10px 0;
-
-                &:not(:last-child) {
-                    border-bottom: 1px solid $color-gray-middle;
-                }
+            &:not(:last-child) {
+                border-bottom: 1px solid $color-gray-middle;
             }
         }
     }

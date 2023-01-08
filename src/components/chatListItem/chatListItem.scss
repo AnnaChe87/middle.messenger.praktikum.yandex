@@ -7,13 +7,13 @@
     border-top: 1px solid $color-gray-middle;
     padding: 10px 0;
 
-    &_avatar {
+    &-avatar {
         background-color: $color-gray-middle;
         border-radius: 50%;
         width: 70px;
     }
 
-    &_info-message, &_info-time {
+    &-info-message, &-info-time {
         display: flex;
         flex-direction: column;
         margin-left: 10px;
@@ -23,17 +23,11 @@
         }
     }
 
-    &_info-message {
+    &-info-message {
         flex: 1;
-
-        .name {
-            font-size: 13px;
-            line-height: 13px;
-        }
 
         .text {
             margin-top: 4px;
-            font-size: 13px;
             line-height: 15px;
             color: $color-gray-dark;
             overflow: hidden;
@@ -41,9 +35,8 @@
         }
     }
 
-    &_info-time {
+    &-info-time {
         .time {
-            font-size: 9px;
             line-height: 13px;
         }
 
@@ -57,7 +50,6 @@
                 width: 20px;
                 background-color: $color-blue;
                 border-radius: 50%;
-                font-size: 11px;
                 line-height: 20px;
                 color: $color-white;
                 text-align: center;

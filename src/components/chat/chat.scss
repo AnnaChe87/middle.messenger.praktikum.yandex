@@ -12,21 +12,19 @@
         height: 34px;
         align-items: center;
 
-        &_avatar {
+        &-avatar {
             width: 34px;
             height: 34px;
             background-color: $color-gray-middle;
             border-radius: 50%;
         }
 
-        &_title {
+        &-title {
             margin-left: 10px;
-            font-size: 13px;
-            font-weight: 600;
             flex: 1;
         }
 
-        &_actions {
+        &-actions {
             background: url("../../assets/icons/menu.svg") no-repeat center;
             width: 16px;
             height: 16px;
@@ -48,14 +46,14 @@
             margin-left: 10px;
         }
 
-        &_attach {
+        &-attach {
             .icon-btn {
                 transform: rotate(45deg);
                 background: url("../../assets/icons/attach.svg") no-repeat center;
             }
         }
 
-        &_input {
+        &-input {
             flex: 1;
 
             input {
@@ -67,7 +65,7 @@
             }
         }
 
-        &_button {
+        &-button {
             .icon-btn {
                 background-color: $color-blue;
                 background-image: url("../../assets/icons/arrow-right.svg");
