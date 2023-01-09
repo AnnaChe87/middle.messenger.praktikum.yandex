@@ -1,9 +1,10 @@
+@import "normalize.css";
 @import "./colors";
 @import "./fonts";
+@import "./mixins";
 
 body {
     font-family: "Inter";
-    font-weight: 500;
     font-size: $font-base;
     color: $color-black;
 
@@ -14,9 +15,7 @@ body {
         cursor: pointer;
 
         &.icon-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+            @include circle(32px, transparent);
         }
     }
 
@@ -33,23 +32,16 @@ body {
         }
     }
 
-    .text {
-        font-size: $font-base;
-
-        &-small {
-            font-size: $font-small;
-        }
-    
-        &-large {
-            font-size: $font-large;
-        }
-    
-        &-giant {
-            font-size: $font-giant;
-        }
+    h4 {
+        margin: 4px 0;
     }
 
-    .bold {
-        font-weight: 600;
+    .column {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    .text-small {
+        font-size: $font-small;
     }
 }

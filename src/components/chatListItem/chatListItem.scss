@@ -1,4 +1,5 @@
 @import "src/styles/colors";
+@import "src/styles/mixins";
 
 .chat-list-item {
     display: flex;
@@ -8,14 +9,10 @@
     padding: 10px 0;
 
     &-avatar {
-        background-color: $color-gray-middle;
-        border-radius: 50%;
-        width: 70px;
+        @include circle(70px, $color-gray-middle);
     }
 
     &-info-message, &-info-time {
-        display: flex;
-        flex-direction: column;
         margin-left: 10px;
 
         > :last-child {
@@ -27,11 +24,9 @@
         flex: 1;
 
         .text {
-            margin-top: 4px;
             line-height: 15px;
             color: $color-gray-dark;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
     }
 
@@ -46,10 +41,8 @@
             justify-content: flex-end;
 
             .count {
-                height: 20px;
-                width: 20px;
-                background-color: $color-blue;
-                border-radius: 50%;
+                @include circle(20px, $color-blue);
+                
                 line-height: 20px;
                 color: $color-white;
                 text-align: center;
