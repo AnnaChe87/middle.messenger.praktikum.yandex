@@ -11,7 +11,7 @@ export default function(props = {}) {
             formItem({ label: "Логин", name: "login" }),
             formItem({ label: "Пароль", name: "password", type: "password" }),
         ],
-        btn: button({title: "Войти"}),
-        link: link({ href: "#/signin", title: "Нет аккаунта?"}),
+        btn: button({ title: "Войти", type: "submit" }),
+        link: link({ href: "#/signin", title: "Нет аккаунта?" }),
     });
 }

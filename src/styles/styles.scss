@@ -36,12 +36,12 @@ body {
         margin: 4px 0;
     }
 
+    p {
+        margin: 0;
+    }
+
     .column {
         display: flex;
         flex-flow: column nowrap;
-    }
-
-    .text-small {
-        font-size: $font-small;
     }
 }

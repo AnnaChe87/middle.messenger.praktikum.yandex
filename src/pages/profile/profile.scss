@@ -23,19 +23,15 @@
         }
     }
 
-    &-content {
+    &-content, &-actions {
         margin-top: 60px;
     }
 
-    &-actions {
-        margin-top: 60px;
+    &-actions-item {
+        padding: 10px 0;
 
-        &-item {
-            padding: 10px 0;
-
-            &:not(:last-child) {
-                border-bottom: 1px solid $color-gray-middle;
-            }
+        &:not(:last-child) {
+            border-bottom: 1px solid $color-gray-middle;
         }
     }
 }
