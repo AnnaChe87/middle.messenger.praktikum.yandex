@@ -1,0 +1,29 @@
+@import "src/styles/colors";
+
+.chats {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: $color-gray-light;
+
+    &-navigation {
+        flex: 1 310px;
+        border-right: 1px solid $color-gray-dark;
+        padding: 20px 10px;
+
+        &-profile {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        &-search {
+            margin-top: 20px;
+        }
+    }
+
+    &-chat {
+        flex: 4;
+        justify-content: space-around;
+        height: 100%;
+    }
+}

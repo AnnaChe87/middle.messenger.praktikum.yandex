@@ -1,0 +1,23 @@
+<div class="chat column">
+    <div class="chat-header">
+        <div class="chat-header-avatar"></div>
+        <h4 class="chat-header-title">{{title}}</h4>
+        <div class="chat-header-actions"></div>
+    </div>
+    <div class="chat-content">
+        {{#each messages}}
+            {{{this}}}
+        {{/each}}
+    </div>
+    <div class="chat-footer">
+        <div class="chat-footer-attach">
+            <button class="icon-btn"></button>
+        </div>
+        <div class="chat-footer-input">
+            <input name="message" placeholder="Сообщение" />
+        </div>
+        <div class="chat-footer-button">
+            <button class="icon-btn"></button>
+        </div>
+    </div>
+</div>
