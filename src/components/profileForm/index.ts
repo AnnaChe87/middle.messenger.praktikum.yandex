@@ -1,37 +1,64 @@
-import template from './profileForm.hbs';
-import profileItem from '../profileItem';
-import data from '../../mock/currentUser.json';
-import button from '../button';
-import './profileForm.scss';
+import template from "./profileForm.hbs";
+import profileItem from "../profileItem";
+import * as data from "../../mock/currentUser.json";
+import button from "../button";
+import "./profileForm.scss";
+import { ProfileFormProps } from "./profileForm.types";
 
-export default function (props = {}) {
+export default function (props: ProfileFormProps) {
   let items = [];
   const { isEdit, isPassword } = props;
   if (isPassword) {
     items = [
-      profileItem({ title: 'Старый пароль', name: 'oldPassword' }),
-      profileItem({ title: 'Новый пароль', name: 'newPassword', type: 'password' }),
-      profileItem({ title: 'Повторите новый пароль', name: 'confirmPassword', type: 'password' }),
+      profileItem({ title: "Старый пароль", name: "oldPassword" }),
+      profileItem({
+        title: "Новый пароль",
+        name: "newPassword",
+        type: "password",
+      }),
+      profileItem({
+        title: "Повторите новый пароль",
+        name: "confirmPassword",
+        type: "password",
+      }),
     ];
   } else {
     items = [
       profileItem({
-        title: 'Почта', name: 'email', value: data.email, disabled: !isEdit,
+        title: "Почта",
+        name: "email",
+        value: data.email,
+        disabled: !isEdit,
       }),
       profileItem({
-        title: 'Логин', name: 'login', value: data.login, disabled: !isEdit,
+        title: "Логин",
+        name: "login",
+        value: data.login,
+        disabled: !isEdit,
       }),
       profileItem({
-        title: 'Имя', name: 'first_name', value: data.first_name, disabled: !isEdit,
+        title: "Имя",
+        name: "first_name",
+        value: data.first_name,
+        disabled: !isEdit,
       }),
       profileItem({
-        title: 'Фамилия', name: 'second_name', value: data.second_name, disabled: !isEdit,
+        title: "Фамилия",
+        name: "second_name",
+        value: data.second_name,
+        disabled: !isEdit,
       }),
       profileItem({
-        title: 'Имя в чате', name: 'display_name', value: data.display_name, disabled: !isEdit,
+        title: "Имя в чате",
+        name: "display_name",
+        value: data.display_name,
+        disabled: !isEdit,
       }),
       profileItem({
-        title: 'Телефон', name: 'phone', value: data.phone, disabled: !isEdit,
+        title: "Телефон",
+        name: "phone",
+        value: data.phone,
+        disabled: !isEdit,
       }),
     ];
   }
@@ -39,6 +66,9 @@ export default function (props = {}) {
   return template({
     ...props,
     items,
-    btn: isEdit || isPassword ? button({ title: 'Сохранить', type: 'submit' }) : undefined,
+    btn:
+      isEdit || isPassword
+        ? button({ title: "Сохранить", type: "submit" })
+        : undefined,
   });
 }

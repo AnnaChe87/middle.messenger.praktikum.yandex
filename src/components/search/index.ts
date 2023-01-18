@@ -1,6 +1,6 @@
-import template from './search.hbs';
-import './search.scss';
+import template from "./search.hbs";
+import "./search.scss";
 
-export default function (props = {}) {
-  return template(props);
+export default function () {
+  return template();
 }

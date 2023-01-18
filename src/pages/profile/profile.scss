@@ -2,36 +2,37 @@
 @import "src/styles/mixins";
 
 .profile {
+  align-items: center;
+  width: 510px;
+  margin: 0 auto;
+
+  &-header {
     align-items: center;
-    width: 510px;
-    margin: 0 auto;
+    margin-top: 60px;
 
-    &-header {
-        align-items: center;
-        margin-top: 60px;
+    &-avatar {
+      @include circle(130px, $color-gray-middle);
 
-        &-avatar {
-            @include circle(130px, $color-gray-middle);
-
-            background-image: url("../../assets/icons/image.svg");
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        &-name {
-            margin-top: 20px;
-        }
+      background-image: url("../../assets/icons/image.svg");
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
-    &-content, &-actions {
-        margin-top: 60px;
+    &-name {
+      margin-top: 20px;
     }
+  }
 
-    &-actions-item {
-        padding: 10px 0;
+  &-content,
+  &-actions {
+    margin-top: 60px;
+  }
 
-        &:not(:last-child) {
-            border-bottom: 1px solid $color-gray-middle;
-        }
+  &-actions-item {
+    padding: 10px 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-gray-middle;
     }
+  }
 }

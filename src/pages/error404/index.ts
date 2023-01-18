@@ -1,5 +1,5 @@
-import error from '../../components/error';
+import error from "../../components/error";
 
-export default function (props = {}) {
-  return error({ code: '404', text: 'Не туда попали' });
+export default function () {
+  return error({ code: "404", text: "Не туда попали" });
 }

@@ -1,4 +1,4 @@
-export interface ButtonProps {
-  type: string;
+export type ButtonProps = {
+  type: "submit" | "button";
   title: string;
-}
+};
