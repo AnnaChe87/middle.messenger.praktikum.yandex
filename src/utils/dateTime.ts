@@ -1,18 +1,18 @@
-function dayName(number) {
+function dayName(number: number) {
   const days = [
-    'Воскресенье',
-    'Понедельник',
-    'Вторник',
-    'Среда',
-    'Четверг',
-    'Пятница',
-    'Суббота',
+    "Воскресенье",
+    "Понедельник",
+    "Вторник",
+    "Среда",
+    "Четверг",
+    "Пятница",
+    "Суббота",
   ];
 
   return days[number];
 }
 
-export function getTime(dateStr) {
+export function getTime(dateStr: string) {
   const date = new Date(dateStr);
   const today = new Date();
   today.setHours(0, 0, 0);
