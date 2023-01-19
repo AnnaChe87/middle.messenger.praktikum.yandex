@@ -1,17 +1,16 @@
-import './login.scss';
-import loginTemplate from './login.hbs';
-import formItem from '../../components/formItem';
-import button from '../../components/button';
-import link from '../../components/link';
+import "./login.scss";
+import tem from "./login.hbs";
+import formItem from "../../components/formItem";
+import { Button, Link } from "../../components";
 
 export default function (props = {}) {
-  return loginTemplate({
+  return tem({
     ...props,
     controls: [
-      formItem({ label: 'Логин', name: 'login' }),
-      formItem({ label: 'Пароль', name: 'password', type: 'password' }),
+      formItem({ label: "Логин", name: "login" }),
+      formItem({ label: "Пароль", name: "password", type: "password" }),
     ],
-    btn: button({ title: 'Войти', type: 'submit' }),
-    link: link({ href: '#/signin', title: 'Нет аккаунта?' }),
+    btn: new Button({ title: "Войти", type: "submit" }),
+    link: new Link({ href: "#/signin", title: "Нет аккаунта?" }),
   });
 }

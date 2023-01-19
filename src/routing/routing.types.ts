@@ -1,3 +1,5 @@
+import Block from "../core/Block";
+
 export enum RouteNames {
   BASE = "/",
   LOGIN = "/login",
@@ -10,4 +12,4 @@ export enum RouteNames {
   PROFILE_PASS = "/profile-pass",
 }
 
-export type Route = () => string;
+export type Route = Block;

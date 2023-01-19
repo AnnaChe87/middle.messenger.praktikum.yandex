@@ -3,6 +3,9 @@ type Listener<E extends string> = Record<E, EventCallback[]>;
 
 export default class EventBus<E extends string> {
   private listeners: Listener<E>;
+  constructor() {
+    this.listeners = {} as Listener<E>;
+  }
 
   on(event: E, callback: EventCallback) {
     if (!this.listeners[event]) {
