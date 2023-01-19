@@ -1,6 +1,7 @@
-import Block from "../../core/Block";
+import { Block } from "../../core";
 import { LayoutProps } from "./layout.types";
 import template from "./layout.hbs";
+
 import "./layout.scss";
 
 export class Layout extends Block {

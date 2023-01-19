@@ -1,7 +1,8 @@
-import { MessageModel } from "../../models/message.model";
+import { Props } from "../../index.types";
+import { MessageModel } from "../../mock/mock.types";
 
-export type ChatListItemProps = {
-  title: string;
-  unread_count: number;
-  last_message: MessageModel;
+export type ChatListItemProps = Props & {
+  unreadCount: number;
+  lastMessage: MessageModel;
+  formattedTime: string;
 };

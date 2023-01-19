@@ -1,5 +1,5 @@
 import * as currentUserData from "../mock/currentUser.json";
-import { UserModel } from "../models";
+import { UserModel } from "../mock/mock.types";
 
 export default function (user: UserModel) {
   const { first_name, second_name, login } = user;

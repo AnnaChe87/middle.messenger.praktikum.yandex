@@ -1,8 +1,9 @@
-import Block from "../../core/Block";
+import { Block } from "../../core";
 import { LoginProps } from "./login.types";
-import "./login.scss";
+import { Button, FormItem, Link } from "../../components";
 import template from "./login.hbs";
-import { Button, Link } from "../../components";
+
+import "./login.scss";
 
 class Login extends Block {
   constructor(props: LoginProps) {
@@ -20,4 +21,8 @@ export const login = new Login({
     type: "submit",
   }),
   link: new Link({ href: "#/signin", title: "Нет аккаунта?" }),
+  controls: [
+    new FormItem({ label: "Логин", name: "login" }),
+    new FormItem({ label: "Пароль", name: "password", type: "password" }),
+  ],
 });

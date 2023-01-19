@@ -1,7 +1,7 @@
-import Block from "../../core/Block";
+import { Block } from "../../core";
+import { Link } from "../../components";
 import { NavigationProps } from "./navigation.types";
 import template from "./navigation.hbs";
-import { Link } from "../../components";
 
 class Navigation extends Block {
   constructor(props: NavigationProps) {

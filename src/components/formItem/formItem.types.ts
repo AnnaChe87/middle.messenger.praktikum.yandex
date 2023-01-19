@@ -1,5 +1,8 @@
-export type FormItemProps = {
-  label: string;
+import { Props } from "../../index.types";
+
+export type FormItemProps = Props & {
   name: string;
-  type?: "password" | "text";
+  label?: string;
+  placeholder?: string;
+  type?: "password" | "text" | "search";
 };

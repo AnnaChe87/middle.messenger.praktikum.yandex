@@ -1,6 +1,6 @@
 import { Route, RouteNames } from "./routing.types";
 
-import { login, navigation } from "../pages";
+import { chats, error404, error500, login, navigation, signin } from "../pages";
 
 // export const Routes: Record<RouteNames, Route> = {
 //   [RouteNames.BASE]: index,
@@ -17,4 +17,8 @@ import { login, navigation } from "../pages";
 export const Routes: Record<RouteNames, Route> = {
   [RouteNames.BASE]: navigation,
   [RouteNames.LOGIN]: login,
+  [RouteNames.SIGNIN]: signin,
+  [RouteNames.ERROR404]: error404,
+  [RouteNames.ERROR500]: error500,
+  [RouteNames.CHATS]: chats,
 };

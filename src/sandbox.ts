@@ -16,6 +16,6 @@ render("#app", btn);
 
 setTimeout(() => {
   btn.setProps({
-    title: "Link me, please",
+    title: "Click me, please!",
   });
 }, 10000);

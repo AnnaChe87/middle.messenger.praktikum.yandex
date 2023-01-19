@@ -1,7 +1,8 @@
+import { Block } from "../../core";
 import { LinkProps } from "./link.types";
 import template from "./link.hbs";
+
 import "./link.scss";
-import Block from "../../core/Block";
 
 export class Link extends Block {
   constructor(props: LinkProps) {

@@ -17,7 +17,7 @@ enum EVENTS {
 
 type BlockEventBus = EventBus<EVENTS>;
 
-class Block {
+export class Block {
   _key: string;
   _element: HTMLElement;
   _meta: MetaInfo;
@@ -148,7 +148,6 @@ class Block {
         stubs[key] = `<div data-key="${value._key}"></div>`;
       }
     });
-    console.log(stubs);
 
     const htmlString = template({ ...props, ...stubs });
     fragment.innerHTML = htmlString;
@@ -219,5 +218,3 @@ class Block {
     this.getContent().style.display = "none";
   }
 }
-
-export default Block;

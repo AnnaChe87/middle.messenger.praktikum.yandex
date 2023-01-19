@@ -1,4 +1,4 @@
-import Block from "../../core/Block";
+import { Block } from "../../core";
 import template from "./button.hbs";
 import { ButtonProps } from "./button.types";
 

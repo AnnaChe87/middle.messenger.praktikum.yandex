@@ -1,7 +1,8 @@
-import { UserModel } from "../../models";
+import { Props } from "../../index.types";
 
-export interface MessageProps {
-  user: UserModel;
+export type MessageProps = Props & {
+  name: string;
   time: string;
   content: string;
-}
+  isCurrent: boolean;
+};
