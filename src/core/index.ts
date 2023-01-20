@@ -1,1 +1,2 @@
-export { Block } from "./Block";
+export * from "./Block";
+export * from "./render";

@@ -4,6 +4,9 @@ import template from "./link.hbs";
 
 import "./link.scss";
 
+/**
+ * Ссылка
+ */
 export class Link extends Block {
   constructor(props: LinkProps) {
     super(props);

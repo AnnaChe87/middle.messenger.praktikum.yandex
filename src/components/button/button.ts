@@ -4,6 +4,9 @@ import { ButtonProps } from "./button.types";
 
 import "./button.scss";
 
+/**
+ * Кнопка
+ */
 export class Button extends Block {
   constructor(props: ButtonProps) {
     super(props);

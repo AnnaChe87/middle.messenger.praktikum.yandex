@@ -1,7 +1,7 @@
 import * as currentUserData from "../mock/currentUser.json";
 import { UserModel } from "../mock/mock.types";
 
-export default function (user: UserModel) {
+export function getUserName(user: UserModel) {
   const { first_name, second_name, login } = user;
   if (login === currentUserData.login) {
     return "Вы";

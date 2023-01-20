@@ -4,6 +4,9 @@ import template from "./chat.hbs";
 
 import "./chat.scss";
 
+/**
+ * Лента переписки с формой ввода сообщения
+ */
 export class Chat extends Block {
   constructor(props: ChatProps) {
     super(props);

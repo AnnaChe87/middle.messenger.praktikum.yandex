@@ -4,6 +4,9 @@ import template from "./message.hbs";
 
 import "./message.scss";
 
+/**
+ * Сообщение в ленте переписки
+ */
 export class Message extends Block {
   constructor(props: MessageProps) {
     super(props);

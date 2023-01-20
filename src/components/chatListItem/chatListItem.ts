@@ -4,6 +4,9 @@ import template from "./chatListItem.hbs";
 
 import "./chatListItem.scss";
 
+/**
+ * Чат в списке чатов
+ */
 export class ChatListItem extends Block {
   constructor(props: ChatListItemProps) {
     super(props);

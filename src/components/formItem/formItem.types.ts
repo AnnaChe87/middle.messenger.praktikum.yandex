@@ -5,4 +5,6 @@ export type FormItemProps = Props & {
   label?: string;
   placeholder?: string;
   type?: "password" | "text" | "search";
+  disabled?: boolean;
+  value?: string;
 };

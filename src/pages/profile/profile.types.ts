@@ -1,4 +1,9 @@
-export type ProfileProps = {
-  isEdit?: boolean;
-  isPassword?: boolean;
+import { Button, FormItem, Link } from "../../components";
+import { Props } from "../../index.types";
+
+export type ProfileProps = Props & {
+  controls: FormItem[];
+  displayName?: string;
+  btn?: Button;
+  links?: Link[];
 };

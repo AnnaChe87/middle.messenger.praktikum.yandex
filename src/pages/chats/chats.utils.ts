@@ -1,9 +1,8 @@
-import { Message } from "../components";
-import { ChatListItemProps } from "../components/chatListItem/chatListItem.types";
-import mock from "../mock";
-import { ChatModel, MessageModel } from "../mock/mock.types";
-import { getTime } from "./dateTime";
-import userName from "./userName";
+import { Message } from "../../components";
+import { ChatListItemProps } from "../../components/chatListItem/chatListItem.types";
+import { data, ChatModel, MessageModel } from "../../mock";
+import { getTime } from "../../utils/dateTime";
+import { getUserName } from "../../utils/user";
 
 export function mapChatToChatListItemProps(chat: ChatModel): ChatListItemProps {
   const { unread_count, last_message } = chat;
@@ -18,8 +17,8 @@ export function mapChatToMessages(messages: MessageModel[]): Message[] {
   return messages.map(
     (msg) =>
       new Message({
-        name: userName(msg.user),
-        isCurrent: msg.user.login === mock.currentUser.login,
+        name: getUserName(msg.user),
+        isCurrent: msg.user.login === data.currentUser.login,
         content: msg.content,
         time: msg.time,
       })

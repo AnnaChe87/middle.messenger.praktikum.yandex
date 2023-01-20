@@ -3,6 +3,9 @@ import { Link } from "../../components";
 import { NavigationProps } from "./navigation.types";
 import template from "./navigation.hbs";
 
+/**
+ * Навигация по страницам
+ */
 class Navigation extends Block {
   constructor(props: NavigationProps) {
     super(props);

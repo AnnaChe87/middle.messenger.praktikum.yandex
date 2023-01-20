@@ -1,6 +1,5 @@
-export { login } from "./login/login";
-export { navigation } from "./navigation/navigation";
-export { signin } from "./signin/signin";
-export { error404 } from "./error404/error404";
-export { error500 } from "./error500/error500";
-export { chats } from "./chats/chats";
+export { login, signin } from "./entry";
+export { navigation } from "./navigation";
+export { error404, error500 } from "./error";
+export { chats } from "./chats";
+export { profile, profileEdit, profilePass } from "./profile";

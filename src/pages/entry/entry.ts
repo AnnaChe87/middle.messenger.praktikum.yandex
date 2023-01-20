@@ -1,12 +1,15 @@
 import { Block } from "../../core";
+import { EntryProps } from "./entry.types";
+import template from "./entry.hbs";
+
+import "./entry.scss";
 import { Button, FormItem, Link } from "../../components";
-import { SigninProps } from "./signin.types";
-import template from "./signin.hbs";
 
-import "./signin.scss";
-
-class Signin extends Block {
-  constructor(props: SigninProps) {
+/**
+ * Авторизация/регистрация
+ */
+class Entry extends Block {
+  constructor(props: EntryProps) {
     super(props);
   }
 
@@ -15,7 +18,8 @@ class Signin extends Block {
   }
 }
 
-export const signin = new Signin({
+export const signin = new Entry({
+  title: "Регистрация",
   controls: [
     new FormItem({ label: "Почта", name: "email" }),
     new FormItem({ label: "Логин", name: "login" }),
@@ -31,4 +35,17 @@ export const signin = new Signin({
   ],
   btn: new Button({ title: "Зарегистрироваться", type: "submit" }),
   link: new Link({ href: "#/login", title: "Войти" }),
+});
+
+export const login = new Entry({
+  title: "Вход",
+  btn: new Button({
+    title: "Войти",
+    type: "submit",
+  }),
+  link: new Link({ href: "#/signin", title: "Нет аккаунта?" }),
+  controls: [
+    new FormItem({ label: "Логин", name: "login" }),
+    new FormItem({ label: "Пароль", name: "password", type: "password" }),
+  ],
 });
