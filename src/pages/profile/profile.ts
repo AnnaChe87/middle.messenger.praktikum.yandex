@@ -13,6 +13,7 @@ import "./profile.scss";
 class Profile extends Block {
   constructor(props: ProfileProps) {
     props.displayName = data.currentUser.display_name;
+    props.classname = "profile";
     super(props);
   }
 

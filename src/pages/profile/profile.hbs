@@ -1,21 +1,19 @@
-<div class="profile">
-  <div class="profile-header column">
-    <div class="profile-header-avatar"></div>
-    <h2>{{displayName}}</h2>
-  </div>
-  <div class="profile-content">
-    <form>
-      {{#each controls}}
-        {{{this}}}
-      {{/each}}
-      {{{btn}}}
-    </form>
-  </div>
-  <div class="profile-actions">
-    {{#each links}}
-      <div class="profile-actions-item">
-        {{{this}}}
-      </div>
+<div class="profile-header column">
+  <div class="profile-header-avatar"></div>
+  <h2>{{displayName}}</h2>
+</div>
+<div class="profile-content">
+  <form>
+    {{#each controls}}
+      {{{this}}}
     {{/each}}
-  </div>
+    {{{btn}}}
+  </form>
+</div>
+<div class="profile-actions">
+  {{#each links}}
+    <div class="profile-actions-item">
+      {{{this}}}
+    </div>
+  {{/each}}
 </div>

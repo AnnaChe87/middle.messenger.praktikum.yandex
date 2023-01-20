@@ -10,6 +10,7 @@ import "./layout.scss";
  */
 export class Layout extends Block {
   constructor(props: LayoutProps) {
+    props.classname = "container";
     props.link = new Link({ href: "#", title: "На главную" });
     super(props);
   }

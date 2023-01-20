@@ -9,6 +9,10 @@ import "./message.scss";
  */
 export class Message extends Block {
   constructor(props: MessageProps) {
+    props.classname = ["message", "column"];
+    if (props.isCurrent) {
+      props.classname.push("current");
+    }
     super(props);
   }
 

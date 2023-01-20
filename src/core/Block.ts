@@ -26,11 +26,11 @@ export class Block {
   children: Record<string, Block | Block[]>;
   eventBus: () => BlockEventBus;
 
-  constructor(props: Props) {
+  constructor(props: Props, tagName?: string) {
     const eventBus = new EventBus<EVENTS>();
     this._key = makeUUID();
     this._meta = {
-      tagName: "div",
+      tagName: tagName || "div",
       props,
     };
 
@@ -113,10 +113,23 @@ export class Block {
     this._element.innerHTML = "";
     this._element.appendChild(block);
     this._addEvents();
+    this._addAttributes();
   }
 
   render(): DocumentFragment {
     return new DocumentFragment();
+  }
+
+  _addAttributes() {
+    this._element.classList.remove(...this._element.classList);
+    if (!this.props.classname) {
+      return;
+    }
+    const classList = Array.isArray(this.props.classname)
+      ? this.props.classname
+      : [this.props.classname];
+
+    this._element.classList?.add(...classList);
   }
 
   _addEvents() {

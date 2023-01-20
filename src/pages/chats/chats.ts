@@ -12,18 +12,27 @@ import "./chats.scss";
  */
 class Chats extends Block {
   constructor(props: ChatsProps) {
+    props.classname = "chats";
     super(props);
   }
 
   render() {
     return this.compile(template, this.props);
   }
+
+  selectedId: number;
+  onSelectedChat(id: number) {
+    this.selectedId = id;
+  }
 }
 
 export const chats = new Chats({
   link: new Link({ href: "#/profile", title: "Профиль" }),
   chats: data.chats.map(
-    (chat) => new ChatListItem(mapChatToChatListItemProps(chat))
+    (chat) =>
+      new ChatListItem({
+        ...mapChatToChatListItemProps(chat),
+      })
   ),
   search: new FormItem({ name: "message", type: "search" }),
   currentChat: new Chat({

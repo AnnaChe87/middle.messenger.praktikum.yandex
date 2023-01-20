@@ -9,6 +9,7 @@ import "./chat.scss";
  */
 export class Chat extends Block {
   constructor(props: ChatProps) {
+    props.classname = ["chat", "column"];
     super(props);
   }
 

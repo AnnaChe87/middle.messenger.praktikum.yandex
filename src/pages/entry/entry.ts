@@ -10,6 +10,7 @@ import { Button, FormItem, Link } from "../../components";
  */
 class Entry extends Block {
   constructor(props: EntryProps) {
+    props.classname = "entry";
     super(props);
   }
 

@@ -1,18 +1,16 @@
-<div class="chats">
-  <div class="chats-navigation column">
-    <div class="chats-navigation-profile">
-      {{{link}}}
-    </div>
-    <div class="chats-navigation-search">
-      {{{search}}}
-    </div>
-    <div class="chats-navigation-list">
-      {{#each chats}}
-        {{{this}}}
-      {{/each}}
-    </div>
+<div class="chats-navigation column">
+  <div class="chats-navigation-profile">
+    {{{link}}}
   </div>
-  <div class="chats-chat column">
-    {{{currentChat}}}
+  <div class="chats-navigation-search">
+    {{{search}}}
   </div>
+  <div class="chats-navigation-list">
+    {{#each chats}}
+      {{{this}}}
+    {{/each}}
+  </div>
+</div>
+<div class="chats-chat column">
+  {{{currentChat}}}
 </div>

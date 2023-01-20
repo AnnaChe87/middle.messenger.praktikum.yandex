@@ -9,10 +9,16 @@ import "./button.scss";
  */
 export class Button extends Block {
   constructor(props: ButtonProps) {
-    super(props);
+    props.classname = "button";
+    super(props, "button");
   }
 
   render() {
     return this.compile(template, this.props);
+  }
+
+  _addAttributes(): void {
+    super._addAttributes();
+    this._element.setAttribute("type", this.props.type || "button");
   }
 }

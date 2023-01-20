@@ -9,6 +9,7 @@ import "./formItem.scss";
  */
 export class FormItem extends Block {
   constructor(props: FormItemProps) {
+    props.classname = "form-item";
     super(props);
   }
 

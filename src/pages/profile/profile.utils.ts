@@ -1,5 +1,5 @@
 import { FormItem } from "../../components";
-import mock from "../../mock";
+import { data } from "../../mock";
 
 export function getControls(
   isEdit?: boolean,
@@ -24,37 +24,37 @@ export function getControls(
       new FormItem({
         title: "Почта",
         name: "email",
-        value: mock.currentUser.email,
+        value: data.currentUser.email,
         disabled: !isEdit,
       }),
       new FormItem({
         title: "Логин",
         name: "login",
-        value: mock.currentUser.login,
+        value: data.currentUser.login,
         disabled: !isEdit,
       }),
       new FormItem({
         title: "Имя",
         name: "first_name",
-        value: mock.currentUser.first_name,
+        value: data.currentUser.first_name,
         disabled: !isEdit,
       }),
       new FormItem({
         title: "Фамилия",
         name: "second_name",
-        value: mock.currentUser.second_name,
+        value: data.currentUser.second_name,
         disabled: !isEdit,
       }),
       new FormItem({
         title: "Имя в чате",
         name: "display_name",
-        value: mock.currentUser.display_name,
+        value: data.currentUser.display_name,
         disabled: !isEdit,
       }),
       new FormItem({
         title: "Телефон",
         name: "phone",
-        value: mock.currentUser.phone,
+        value: data.currentUser.phone,
         disabled: !isEdit,
       }),
     ];

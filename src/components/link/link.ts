@@ -9,10 +9,16 @@ import "./link.scss";
  */
 export class Link extends Block {
   constructor(props: LinkProps) {
-    super(props);
+    props.classname = props.color ? ["link", props.color] : "link";
+    super(props, "a");
   }
 
   render() {
     return this.compile(template, this.props);
+  }
+
+  _addAttributes(): void {
+    super._addAttributes();
+    this._element.setAttribute("href", this.props.href);
   }
 }

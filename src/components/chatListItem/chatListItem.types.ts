@@ -5,4 +5,5 @@ export type ChatListItemProps = Props & {
   unreadCount: number;
   lastMessage: MessageModel;
   formattedTime: string;
+  isSelected?: boolean;
 };
