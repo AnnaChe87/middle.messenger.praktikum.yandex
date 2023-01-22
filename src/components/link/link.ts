@@ -22,6 +22,6 @@ export class Link extends Block {
 
   _addAttributes(): void {
     super._addAttributes();
-    this._element.setAttribute("href", this.props.href);
+    this.element.setAttribute("href", this.props.href);
   }
 }

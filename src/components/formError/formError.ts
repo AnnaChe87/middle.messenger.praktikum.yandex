@@ -6,7 +6,7 @@ import "./formError.scss";
 
 export class FormError extends Block {
   constructor(props: FormErrorProps) {
-    props.classname = ["error"];
+    props.classname = ["form-error"];
     super(props, "p");
   }
 

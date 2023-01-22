@@ -1,5 +1,5 @@
 import { v4 as makeUUID } from "uuid";
-import EventBus from "./EventBus";
+import { EventBus } from "./EventBus";
 import { Props, Template } from "../index.types";
 import { isBlockArray } from "../utils/isBlockArray";
 
@@ -18,13 +18,13 @@ enum EVENTS {
 type BlockEventBus = EventBus<EVENTS>;
 
 export class Block {
-  _key: string;
-  _element: HTMLElement;
-  _meta: MetaInfo;
+  private _key: string;
+  private _element: HTMLElement;
+  private _meta: MetaInfo;
 
-  props: Props;
-  children: Record<string, Block | Block[]>;
-  eventBus: () => BlockEventBus;
+  protected props: Props;
+  private children: Record<string, Block | Block[]>;
+  protected eventBus: () => BlockEventBus;
 
   constructor(props: Props, tagName?: string) {
     const eventBus = new EventBus<EVENTS>();
@@ -218,13 +218,5 @@ export class Block {
     });
 
     return { children, props };
-  }
-
-  show() {
-    this.getContent().style.display = "block";
-  }
-
-  hide() {
-    this.getContent().style.display = "none";
   }
 }

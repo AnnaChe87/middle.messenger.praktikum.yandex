@@ -4,7 +4,7 @@ import template from "./formItem.hbs";
 
 import "./formItem.scss";
 import { Input } from "../input";
-import { FormError } from "../error/formError";
+import { FormError } from "../formError/formError";
 
 /**
  * Поле формы

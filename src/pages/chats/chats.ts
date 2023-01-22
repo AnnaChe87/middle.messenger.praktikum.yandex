@@ -19,11 +19,6 @@ class Chats extends Block {
   render() {
     return this.compile(template, this.props);
   }
-
-  selectedId: number;
-  onSelectedChat(id: number) {
-    this.selectedId = id;
-  }
 }
 
 export const chats = new Chats({

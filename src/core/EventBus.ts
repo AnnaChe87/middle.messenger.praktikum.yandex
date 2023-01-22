@@ -1,7 +1,7 @@
 type EventCallback = (...args: unknown[]) => void;
 type Listener<E extends string> = Record<E, EventCallback[]>;
 
-export default class EventBus<E extends string> {
+export class EventBus<E extends string> {
   private listeners: Listener<E>;
   constructor() {
     this.listeners = {} as Listener<E>;

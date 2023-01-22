@@ -15,10 +15,10 @@ export class Input extends Block {
     super._addAttributes();
     Object.entries(this.props).forEach(([key, value]) => {
       if (["type", "name", "placeholder", "value"].includes(key)) {
-        this._element.setAttribute(key, value);
+        this.element.setAttribute(key, value);
       }
       if (key === "disabled" && value) {
-        this._element.setAttribute(key, key);
+        this.element.setAttribute(key, key);
       }
     });
   }

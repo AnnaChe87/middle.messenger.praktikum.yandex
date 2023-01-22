@@ -19,6 +19,6 @@ export class Button extends Block {
 
   _addAttributes(): void {
     super._addAttributes();
-    this._element.setAttribute("type", this.props.type || "button");
+    this.element.setAttribute("type", this.props.type || "button");
   }
 }

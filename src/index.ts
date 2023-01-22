@@ -1,4 +1,4 @@
-import { Layout, Link } from "./components";
+import { Layout } from "./components";
 import { render } from "./core";
 import { Routes, RouteNames } from "./routing";
 

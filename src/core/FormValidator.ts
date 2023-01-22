@@ -32,6 +32,10 @@ const rules: Record<string, Rule> = {
     error:
       'от 10 до 15 символов, допустимы цифры, первый символ может быть "+"',
   },
+  message: {
+    regExp: /^.+$/,
+    error: "не может быть пустым",
+  },
 };
 
 export class FormValidator {
