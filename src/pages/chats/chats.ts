@@ -12,7 +12,7 @@ import "./chats.scss";
  */
 class Chats extends Block {
   constructor(props: ChatsProps) {
-    props.classname = "chats";
+    props.classname = ["chats"];
     super(props);
   }
 
@@ -29,12 +29,14 @@ class Chats extends Block {
 export const chats = new Chats({
   link: new Link({ href: "#/profile", title: "Профиль" }),
   chats: data.chats.map(
-    (chat) =>
-      new ChatListItem({
-        ...mapChatToChatListItemProps(chat),
-      })
+    (chat) => new ChatListItem(mapChatToChatListItemProps(chat))
   ),
-  search: new FormItem({ name: "message", type: "search" }),
+  search: new FormItem({
+    name: "message",
+    type: "search",
+    classname: ["single"],
+    placeholder: "Поиск",
+  }),
   currentChat: new Chat({
     title: data.chats[0].title,
     messages: mapChatToMessages(data.chat),

@@ -9,7 +9,10 @@ import "./link.scss";
  */
 export class Link extends Block {
   constructor(props: LinkProps) {
-    props.classname = props.color ? ["link", props.color] : "link";
+    props.classname = ["link"];
+    if (props.color) {
+      props.classname.push(props.color);
+    }
     super(props, "a");
   }
 

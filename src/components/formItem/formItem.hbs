@@ -1,10 +1,5 @@
-<label class="form-item-label">{{label}}</label>
+{{#if label}}<label class="form-item-label">{{label}}</label>{{/if}}
 <div class="form-item-control">
-  <input
-    name="{{name}}"
-    type="{{type}}"
-    placeholder="{{placeholder}}"
-    value="{{value}}"
-    {{#if disabled}}disabled{{/if}}
-  />
+  {{{input}}}
+  {{{errors}}}
 </div>

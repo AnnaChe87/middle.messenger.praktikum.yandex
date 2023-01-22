@@ -122,14 +122,11 @@ export class Block {
 
   _addAttributes() {
     this._element.classList.remove(...this._element.classList);
-    if (!this.props.classname) {
+    if (!this.props.classname || this.props.classname?.length === 0) {
       return;
     }
-    const classList = Array.isArray(this.props.classname)
-      ? this.props.classname
-      : [this.props.classname];
 
-    this._element.classList?.add(...classList);
+    this._element.classList?.add(...this.props.classname);
   }
 
   _addEvents() {

@@ -3,14 +3,20 @@ import { FormItemProps } from "./formItem.types";
 import template from "./formItem.hbs";
 
 import "./formItem.scss";
+import { Input } from "../input";
+import { FormError } from "../error/formError";
 
 /**
  * Поле формы
  */
 export class FormItem extends Block {
-  constructor(props: FormItemProps) {
-    props.classname = "form-item";
-    super(props);
+  constructor({ classname, label, ...props }: FormItemProps) {
+    super({
+      classname: [...(classname || []), "form-item"],
+      label,
+      errors: new FormError({ text: "" }),
+      input: new Input(props),
+    });
   }
 
   render() {

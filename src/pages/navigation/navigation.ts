@@ -8,7 +8,7 @@ import template from "./navigation.hbs";
  */
 class Navigation extends Block {
   constructor(props: NavigationProps) {
-    props.classname = "column";
+    props.classname = ["column"];
     super(props, "nav");
   }
 

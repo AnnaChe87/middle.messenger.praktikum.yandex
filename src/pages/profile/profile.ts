@@ -1,5 +1,5 @@
 import { Block } from "../../core";
-import { Button, Link } from "../../components";
+import { Button, Form, Link } from "../../components";
 import { data } from "../../mock";
 import { getControls } from "./profile.utils";
 import { ProfileProps } from "./profile.types";
@@ -13,7 +13,7 @@ import "./profile.scss";
 class Profile extends Block {
   constructor(props: ProfileProps) {
     props.displayName = data.currentUser.display_name;
-    props.classname = "profile";
+    props.classname = ["profile"];
     super(props);
   }
 
@@ -28,15 +28,21 @@ export const profile = new Profile({
     new Link({ href: "#/profile-pass", title: "Изменить пароль" }),
     new Link({ href: "#", title: "Выйти", color: "red" }),
   ],
-  controls: getControls(),
+  form: new Form({
+    controls: getControls(),
+  }),
 });
 
 export const profileEdit = new Profile({
-  controls: getControls(true),
-  btn: new Button({ title: "Сохранить", type: "submit" }),
+  form: new Form({
+    controls: getControls(true),
+    btn: new Button({ title: "Сохранить", type: "submit" }),
+  }),
 });
 
 export const profilePass = new Profile({
-  controls: getControls(true, true),
-  btn: new Button({ title: "Сохранить", type: "submit" }),
+  form: new Form({
+    controls: getControls(true, true),
+    btn: new Button({ title: "Сохранить", type: "submit" }),
+  }),
 });

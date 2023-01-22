@@ -1,10 +1,9 @@
 import { Props } from "../../index.types";
+import { FormError } from "../error/formError";
+import { InputProps } from "../input";
 
-export type FormItemProps = Props & {
-  name: string;
-  label?: string;
-  placeholder?: string;
-  type?: "password" | "text" | "search";
-  disabled?: boolean;
-  value?: string;
-};
+export type FormItemProps = Props &
+  InputProps & {
+    label?: string;
+    errors?: FormError;
+  };

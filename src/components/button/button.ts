@@ -9,7 +9,7 @@ import "./button.scss";
  */
 export class Button extends Block {
   constructor(props: ButtonProps) {
-    props.classname = "button";
+    props.classname = [...(props.classname || []), "button"];
     super(props, "button");
   }
 

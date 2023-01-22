@@ -1,6 +1,6 @@
 export interface Props extends Record<string, any> {
-  events?: Record<string, () => void>;
-  classname?: string | string[];
+  events?: Record<string, (event?: Event) => void>;
+  classname?: string[];
   type?: string;
 }
 

@@ -7,14 +7,14 @@ export function getControls(
 ): FormItem[] {
   if (isPassword) {
     return [
-      new FormItem({ title: "Старый пароль", name: "oldPassword" }),
+      new FormItem({ label: "Старый пароль", name: "oldPassword" }),
       new FormItem({
-        title: "Новый пароль",
+        label: "Новый пароль",
         name: "newPassword",
         type: "password",
       }),
       new FormItem({
-        title: "Повторите новый пароль",
+        label: "Повторите новый пароль",
         name: "confirmPassword",
         type: "password",
       }),
@@ -22,37 +22,37 @@ export function getControls(
   } else {
     return [
       new FormItem({
-        title: "Почта",
+        label: "Почта",
         name: "email",
         value: data.currentUser.email,
         disabled: !isEdit,
       }),
       new FormItem({
-        title: "Логин",
+        label: "Логин",
         name: "login",
         value: data.currentUser.login,
         disabled: !isEdit,
       }),
       new FormItem({
-        title: "Имя",
+        label: "Имя",
         name: "first_name",
         value: data.currentUser.first_name,
         disabled: !isEdit,
       }),
       new FormItem({
-        title: "Фамилия",
+        label: "Фамилия",
         name: "second_name",
         value: data.currentUser.second_name,
         disabled: !isEdit,
       }),
       new FormItem({
-        title: "Имя в чате",
+        label: "Имя в чате",
         name: "display_name",
         value: data.currentUser.display_name,
         disabled: !isEdit,
       }),
       new FormItem({
-        title: "Телефон",
+        label: "Телефон",
         name: "phone",
         value: data.currentUser.phone,
         disabled: !isEdit,

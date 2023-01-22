@@ -1,9 +1,8 @@
-import { Button, FormItem, Link } from "../../components";
+import { Form, Link } from "../../components";
 import { Props } from "../../index.types";
 
 export type ProfileProps = Props & {
-  controls: FormItem[];
+  form: Form;
   displayName?: string;
-  btn?: Button;
   links?: Link[];
 };

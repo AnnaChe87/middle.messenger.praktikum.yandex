@@ -16,4 +16,20 @@
       border-bottom: 1px solid $color-blue;
     }
   }
+
+  &.single {
+    margin-bottom: 0;
+    .form-item-control {
+      margin: 0;
+
+      input {
+        height: 100%;
+        background-color: $color-gray-middle;
+        border-radius: 8px;
+        border: 0;
+        padding-left: 10px;
+        color: $color-gray-dark;
+      }
+    }
+  }
 }

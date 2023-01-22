@@ -1,6 +1,6 @@
 import { Props } from "../../index.types";
 
 export type ButtonProps = Props & {
-  title: string;
+  title?: string;
   type?: "button" | "submit";
 };
