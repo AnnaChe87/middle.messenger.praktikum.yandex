@@ -14,10 +14,24 @@ class Chats extends Block {
   constructor(props: ChatsProps) {
     props.classname = ["chats"];
     super(props);
+    this.props.chats.forEach((chat: ChatListItem) =>
+      chat.setProps({ events: { click: () => this.selectChat(chat.props.id) } })
+    );
   }
 
   render() {
     return this.compile(template, this.props);
+  }
+
+  selectChat(id: number) {
+    this.props.chats.forEach((chat: ChatListItem) => {
+      if (chat.props.id !== id) {
+        chat.deselect();
+      }
+      if (chat.props.id === id) {
+        chat.select();
+      }
+    });
   }
 }
 

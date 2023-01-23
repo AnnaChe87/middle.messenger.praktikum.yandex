@@ -21,9 +21,11 @@
     }
 
     &-actions {
-      background: url("../../assets/icons/menu.svg") no-repeat center;
-      width: 16px;
-      height: 16px;
+      .icon-btn {
+        background: url("../../assets/icons/menu.svg");
+        width: 16px;
+        height: 16px;
+      }
     }
   }
 
@@ -42,7 +44,7 @@
     &-attach {
       .icon-btn {
         transform: rotate(45deg);
-        background: url("../../assets/icons/attach.svg") no-repeat center;
+        background: url("../../assets/icons/attach.svg");
       }
     }
 
@@ -57,10 +59,8 @@
 
       .icon-btn {
         margin-left: 10px;
-        background-color: $color-blue;
         background-image: url("../../assets/icons/arrow-right.svg");
-        background-position: center;
-        background-repeat: no-repeat;
+        background-color: $color-blue;
       }
     }
   }

@@ -8,6 +8,10 @@
   border-top: 1px solid $color-gray-middle;
   padding: 10px 0;
 
+  &.selected {
+    background-color: $color-blue-light;
+  }
+
   &-avatar {
     @include circle(70px, $color-gray-middle);
   }

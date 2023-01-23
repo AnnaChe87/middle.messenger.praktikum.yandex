@@ -6,4 +6,9 @@
   color: $color-white;
   padding: 12px;
   border-radius: 8px;
+
+  &.icon-btn {
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }

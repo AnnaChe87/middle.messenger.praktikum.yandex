@@ -22,7 +22,7 @@ export class Block {
   private _element: HTMLElement;
   private _meta: MetaInfo;
 
-  protected props: Props;
+  props: Props;
   private children: Record<string, Block | Block[]>;
   protected eventBus: () => BlockEventBus;
 
@@ -218,5 +218,21 @@ export class Block {
     });
 
     return { children, props };
+  }
+
+  show() {
+    this.getContent().style.display = "block";
+  }
+
+  hide() {
+    this.getContent().style.display = "none";
+  }
+
+  toggle() {
+    if (this.getContent().style.display === "none") {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
 }

@@ -5,8 +5,9 @@ import { getTime } from "../../utils/dateTime";
 import { getUserName } from "../../utils/user";
 
 export function mapChatToChatListItemProps(chat: ChatModel): ChatListItemProps {
-  const { unread_count, last_message } = chat;
+  const { id, unread_count, last_message } = chat;
   return {
+    id,
     lastMessage: last_message,
     unreadCount: unread_count,
     formattedTime: getTime(last_message.time),

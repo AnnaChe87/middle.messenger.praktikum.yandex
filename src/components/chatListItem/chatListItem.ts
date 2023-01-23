@@ -10,13 +10,18 @@ import "./chatListItem.scss";
 export class ChatListItem extends Block {
   constructor(props: ChatListItemProps) {
     props.classname = ["chat-list-item"];
-    if (props.isSelected) {
-      props.classname.push("selected");
-    }
     super(props);
   }
 
   render() {
     return this.compile(template, this.props);
+  }
+
+  select() {
+    this.getContent().classList.add("selected");
+  }
+
+  deselect() {
+    this.getContent().classList.remove("selected");
   }
 }

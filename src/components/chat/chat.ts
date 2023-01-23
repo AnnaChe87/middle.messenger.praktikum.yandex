@@ -6,6 +6,9 @@ import "./chat.scss";
 import { Button } from "../button";
 import { FormItem } from "../formItem";
 import { Form } from "../form";
+import { DropdownButton } from "../dropdownButton/dropdownButton";
+import { Menu } from "../menu";
+import { MenuItem } from "../menuItem";
 
 /**
  * Лента переписки с формой ввода сообщения
@@ -15,7 +18,27 @@ export class Chat extends Block {
     super({
       ...props,
       classname: ["chat", "column"],
-      attach: new Button({ classname: ["icon-btn"] }),
+      menu: new DropdownButton({
+        btn: new Button({ classname: ["icon-btn"] }),
+        menu: new Menu({
+          items: [
+            new MenuItem({ action: "add", title: "Добавить пользователя" }),
+            new MenuItem({ action: "remove", title: "Удалить пользователя" }),
+          ],
+          direction: ["bottom", "left"],
+        }),
+      }),
+      attach: new DropdownButton({
+        btn: new Button({ classname: ["icon-btn"] }),
+        menu: new Menu({
+          items: [
+            new MenuItem({ action: "attach-content", title: "Фото/Видео" }),
+            new MenuItem({ action: "attach-file", title: "Файл" }),
+            new MenuItem({ action: "attach-location", title: "Геолокация" }),
+          ],
+          direction: ["top", "right"],
+        }),
+      }),
       form: new Form({
         classname: ["chat-footer-form"],
         controls: [
