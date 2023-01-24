@@ -1,4 +1,4 @@
-import { Block } from "../../core";
+import { Block } from "../../../../core";
 import { MenuItemProps } from "./menuItem.types";
 import template from "./menuItem.hbs";
 

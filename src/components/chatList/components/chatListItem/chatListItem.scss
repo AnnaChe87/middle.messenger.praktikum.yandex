@@ -14,11 +14,12 @@
 
   &-avatar {
     @include circle(70px, $color-gray-middle);
+    margin-left: 10px;
   }
 
   &-info-message,
   &-info-time {
-    margin-left: 10px;
+    margin: 0 10px;
 
     > :last-child {
       flex: 1 0;

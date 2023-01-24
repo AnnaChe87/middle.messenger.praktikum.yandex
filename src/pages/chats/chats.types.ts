@@ -1,8 +1,9 @@
-import { ChatListItem, FormItem, Link } from "../../components";
+import { Chat, ChatList, FormItem, Link } from "../../components";
 import { Props } from "../../index.types";
 
 export type ChatsProps = Props & {
-  link: Link;
-  chats: ChatListItem[];
-  search: FormItem;
+  chatList: ChatList;
+  currentChat: Chat;
+  link?: Link;
+  search?: FormItem;
 };

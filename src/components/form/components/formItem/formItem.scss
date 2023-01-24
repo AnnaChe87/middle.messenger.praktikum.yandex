@@ -1,7 +1,6 @@
 @import "src/styles/colors";
 
 .form-item {
-  width: 100%;
   margin-bottom: 40px;
 
   &-label {
@@ -30,6 +29,19 @@
         padding-left: 10px;
         color: $color-gray-dark;
       }
+    }
+  }
+
+  &.horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .form-item-label {
+      flex: 1;
+    }
+
+    .form-item-control {
+      flex: 1;
     }
   }
 }

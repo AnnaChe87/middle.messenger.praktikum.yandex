@@ -1,4 +1,4 @@
-import { Block } from "../../core";
+import { Block } from "../../../../core";
 import { FormErrorProps } from "./formError.types";
 import template from "./formError.hbs";
 

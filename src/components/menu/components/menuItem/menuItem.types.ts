@@ -1,4 +1,4 @@
-import { Props } from "../../index.types";
+import { Props } from "../../../../index.types";
 
 export type MenuItemProps = Props & {
   action:

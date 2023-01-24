@@ -79,6 +79,7 @@ export class Block {
 
   _componentDidUpdate(oldProps: Props, newProps: Props) {
     const response = this.componentDidUpdate(oldProps, newProps);
+
     if (response) {
       this.eventBus().emit(EVENTS.FLOW_RENDER);
     }
@@ -99,6 +100,7 @@ export class Block {
       return;
     }
 
+    Object.assign(this.children, this._getChildren(nextProps).children);
     Object.assign(this.props, nextProps);
   };
 

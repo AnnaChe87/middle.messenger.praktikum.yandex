@@ -7,6 +7,8 @@
 <div class="chat-list-item-info-time column">
   <small class="time">{{formattedTime}}</small>
   <div class="count-container">
-    <div class="count">{{{unreadCount}}}</div>
+    {{#if hasUnread}}
+      <div class="count">{{{unreadCount}}}</div>
+    {{/if}}
   </div>
 </div>

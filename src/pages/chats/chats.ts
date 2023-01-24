@@ -1,7 +1,14 @@
 import { Block } from "../../core";
 import { ChatsProps } from "./chats.types";
-import { mapChatToChatListItemProps, mapChatToMessages } from "./chats.utils";
-import { Chat, ChatListItem, FormItem, Link } from "../../components";
+import {
+  Chat,
+  ChatList,
+  ChatListItem,
+  FormItem,
+  Link,
+  mapChatToChatListItemProps,
+  mapChatToMessages,
+} from "../../components";
 import { data } from "../../mock";
 import template from "./chats.hbs";
 
@@ -12,41 +19,43 @@ import "./chats.scss";
  */
 class Chats extends Block {
   constructor(props: ChatsProps) {
-    props.classname = ["chats"];
-    super(props);
-    this.props.chats.forEach((chat: ChatListItem) =>
-      chat.setProps({ events: { click: () => this.selectChat(chat.props.id) } })
-    );
+    super({
+      ...props,
+      classname: ["chats"],
+      link: new Link({ href: "#/profile", title: "Профиль" }),
+      search: new FormItem({
+        name: "message",
+        type: "search",
+        classname: ["single", "chats-navigation-search"],
+        placeholder: "Поиск",
+      }),
+    });
+    this.initEvents();
+  }
+
+  initEvents() {
+    this.props.search.props.input.setProps({
+      events: {
+        input: (e: InputEvent) => {
+          this.props.chatList.filterChats((e.target as HTMLInputElement).value);
+        },
+      },
+    });
   }
 
   render() {
     return this.compile(template, this.props);
   }
-
-  selectChat(id: number) {
-    this.props.chats.forEach((chat: ChatListItem) => {
-      if (chat.props.id !== id) {
-        chat.deselect();
-      }
-      if (chat.props.id === id) {
-        chat.select();
-      }
-    });
-  }
 }
 
 export const chats = new Chats({
-  link: new Link({ href: "#/profile", title: "Профиль" }),
-  chats: data.chats.map(
-    (chat) => new ChatListItem(mapChatToChatListItemProps(chat))
-  ),
-  search: new FormItem({
-    name: "message",
-    type: "search",
-    classname: ["single"],
-    placeholder: "Поиск",
+  chatList: new ChatList({
+    items: data.chats.map(
+      (chat) => new ChatListItem(mapChatToChatListItemProps(chat))
+    ),
   }),
   currentChat: new Chat({
+    classname: ["chats-chat"],
     title: data.chats[0].title,
     messages: mapChatToMessages(data.chat),
   }),

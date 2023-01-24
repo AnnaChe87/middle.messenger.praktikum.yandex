@@ -1,5 +1,5 @@
 import { Props } from "../../index.types";
-import { MenuItem } from "../menuItem";
+import { MenuItem } from "./components/menuItem";
 
 export type MenuProps = Props & {
   items: MenuItem[];

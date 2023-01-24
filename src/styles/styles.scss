@@ -53,4 +53,19 @@ body {
     display: flex;
     flex-flow: column nowrap;
   }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $color-gray-middle;
+    border-radius: 12px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: $color-gray-dark;
+  }
 }

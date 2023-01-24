@@ -1,8 +1,8 @@
 import { Props } from "../../index.types";
 import { Button } from "../button";
 import { DropdownButton } from "../dropdownButton/dropdownButton";
-import { FormItem } from "../formItem";
-import { Message } from "../message/message";
+import { FormItem } from "../form";
+import { Message } from "./components/message/message";
 
 export type ChatProps = Props & {
   title: string;

@@ -1,4 +1,4 @@
-import { Block } from "../../core";
+import { Block } from "../../../../core";
 import { MessageProps } from "./message.types";
 import template from "./message.hbs";
 

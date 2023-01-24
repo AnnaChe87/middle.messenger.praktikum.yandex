@@ -9,16 +9,16 @@
   &-navigation {
     flex: 1 310px;
     border-right: 1px solid $color-gray-dark;
-    padding: 20px 10px;
 
     &-profile {
       display: flex;
       justify-content: flex-end;
+      padding: 20px 10px;
     }
 
     &-search {
-      margin-top: 20px;
       height: 32px;
+      padding: 0 10px 20px;
     }
   }
 

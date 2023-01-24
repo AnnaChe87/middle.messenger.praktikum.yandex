@@ -4,11 +4,11 @@ import template from "./chat.hbs";
 
 import "./chat.scss";
 import { Button } from "../button";
-import { FormItem } from "../formItem";
+import { FormItem } from "../form";
 import { Form } from "../form";
 import { DropdownButton } from "../dropdownButton/dropdownButton";
 import { Menu } from "../menu";
-import { MenuItem } from "../menuItem";
+import { MenuItem } from "../menu/components/menuItem";
 
 /**
  * Лента переписки с формой ввода сообщения
@@ -17,7 +17,7 @@ export class Chat extends Block {
   constructor(props: ChatProps) {
     super({
       ...props,
-      classname: ["chat", "column"],
+      classname: ["chat", "column", ...(props.classname || [])],
       menu: new DropdownButton({
         btn: new Button({ classname: ["icon-btn"] }),
         menu: new Menu({

@@ -1,9 +1,9 @@
-import { Block } from "../../core";
+import { Block } from "../../../../core";
 import { FormItemProps } from "./formItem.types";
 import template from "./formItem.hbs";
 
 import "./formItem.scss";
-import { Input } from "../input";
+import { Input } from "../../../input";
 import { FormError } from "../formError/formError";
 
 /**
