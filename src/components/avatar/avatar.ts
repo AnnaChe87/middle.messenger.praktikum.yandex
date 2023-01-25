@@ -10,7 +10,7 @@ import "./avatar.scss";
 /**
  * Контрол отображения/изменения аватара в профиле
  */
-export class Avatar extends Block {
+export class Avatar extends Block<AvatarProps> {
   constructor(props: AvatarProps) {
     super({
       ...props,

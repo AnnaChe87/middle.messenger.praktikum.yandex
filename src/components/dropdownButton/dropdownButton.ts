@@ -7,7 +7,7 @@ import "./dropdownButton.scss";
 /**
  * Кнопка с выпадающим меню
  */
-export class DropdownButton extends Block {
+export class DropdownButton extends Block<DropdownButtonProps> {
   constructor(props: DropdownButtonProps) {
     props.classname = ["dropdown-button"];
     super(props);

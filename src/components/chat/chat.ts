@@ -12,7 +12,7 @@ import { Menu, MenuItem } from "../menu";
 /**
  * Лента переписки с формой ввода сообщения
  */
-export class Chat extends Block {
+export class Chat extends Block<ChatProps> {
   constructor(props: ChatProps) {
     super({
       ...props,

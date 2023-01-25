@@ -8,7 +8,7 @@ import "./entry.scss";
 /**
  * Авторизация/регистрация
  */
-class Entry extends Block {
+class Entry extends Block<EntryProps> {
   constructor(props: EntryProps) {
     props.classname = ["entry"];
     super(props);

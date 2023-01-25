@@ -17,7 +17,7 @@ import "./chats.scss";
 /**
  * Список чатов и лента переписки
  */
-class Chats extends Block {
+class Chats extends Block<ChatsProps> {
   constructor(props: ChatsProps) {
     super({
       ...props,
@@ -34,7 +34,7 @@ class Chats extends Block {
   }
 
   initEvents() {
-    this.props.search.props.input.setProps({
+    this.props.search!.props.input.setProps({
       events: {
         input: (e: InputEvent) => {
           this.props.chatList.filterChats((e.target as HTMLInputElement).value);

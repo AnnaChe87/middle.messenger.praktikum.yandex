@@ -7,7 +7,7 @@ import "./message.scss";
 /**
  * Сообщение в ленте переписки
  */
-export class Message extends Block {
+export class Message extends Block<MessageProps> {
   constructor(props: MessageProps) {
     props.classname = ["message", "column"];
     if (props.isCurrent) {

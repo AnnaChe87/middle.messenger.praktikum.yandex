@@ -7,7 +7,7 @@ import "./link.scss";
 /**
  * Ссылка
  */
-export class Link extends Block {
+export class Link extends Block<LinkProps> {
   constructor(props: LinkProps) {
     props.classname = ["link"];
     if (props.color) {

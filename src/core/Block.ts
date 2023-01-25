@@ -3,10 +3,12 @@ import { EventBus } from "./EventBus";
 import { Props, Template } from "../index.types";
 import { isBlockArray } from "../utils";
 
-type MetaInfo = {
+type MetaInfo<P> = {
   tagName: string;
-  props: Props;
+  props: P;
 };
+
+type BlockChildren<K> = Record<keyof K, Block<Props> | Block<Props>[]>;
 
 enum EVENTS {
   INIT = "init",
@@ -17,16 +19,16 @@ enum EVENTS {
 
 type BlockEventBus = EventBus<EVENTS>;
 
-export class Block {
+export class Block<T extends Props> {
   private _key: string;
   private _element: HTMLElement;
-  private _meta: MetaInfo;
-  private _children: Record<string, Block | Block[]>;
+  private _meta: MetaInfo<T>;
+  private _children: BlockChildren<T>;
 
-  props: Props;
+  props: T;
   protected eventBus: () => BlockEventBus;
 
-  constructor(props: Props, tagName?: string) {
+  constructor(props: T, tagName?: string) {
     const eventBus = new EventBus<EVENTS>();
     this._key = makeUUID();
     this._meta = {
@@ -77,7 +79,7 @@ export class Block {
     this.eventBus().emit(EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: Props, newProps: Props) {
+  _componentDidUpdate(oldProps: T, newProps: T) {
     const response = this.componentDidUpdate(oldProps, newProps);
 
     if (response) {
@@ -85,7 +87,7 @@ export class Block {
     }
   }
 
-  componentDidUpdate(oldProps: Props, newProps: Props) {
+  componentDidUpdate(oldProps: T, newProps: T) {
     let needUpdate = false;
     Object.keys(newProps).forEach((key) => {
       if (newProps[key] !== oldProps[key]) {
@@ -95,7 +97,7 @@ export class Block {
     return needUpdate;
   }
 
-  setProps = (nextProps?: Props) => {
+  setProps = (nextProps?: Partial<T>) => {
     if (!nextProps) {
       return;
     }
@@ -144,7 +146,7 @@ export class Block {
     });
   }
 
-  compile(template: Template, props: Props): DocumentFragment {
+  compile(template: Template, props: T): DocumentFragment {
     const fragment = this._createDocumentElement(
       "template"
     ) as HTMLTemplateElement;
@@ -181,15 +183,15 @@ export class Block {
     return this.element;
   }
 
-  _makePropsProxy(props: Props) {
+  _makePropsProxy(props: T) {
     const self = this;
 
     return new Proxy(props, {
-      get(target: Props, prop: string) {
+      get(target: T, prop: keyof T) {
         const val = target[prop];
         return typeof val === "function" ? val.bind(target) : val;
       },
-      set(target: Props, prop: string, value) {
+      set(target: T, prop: keyof T, value) {
         const oldProps = { ...target };
         target[prop] = value;
         self.eventBus().emit(EVENTS.FLOW_CDU, oldProps, target);
@@ -198,7 +200,7 @@ export class Block {
       deleteProperty() {
         throw new Error("Нет доступа");
       },
-    });
+    } as ProxyHandler<T>);
   }
 
   _createDocumentElement(tagName: string) {
@@ -207,15 +209,16 @@ export class Block {
     return el;
   }
 
-  _getChildren(propsAndChildren: Props) {
-    const children: Record<string, Block | Block[]> = {};
-    const props: Props = {};
+  _getChildren(propsAndChildren: Partial<T>) {
+    const children: BlockChildren<T> = {} as BlockChildren<T>;
+    const props: T = {} as T;
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
+      const prop = key as keyof T;
       if (value instanceof Block || isBlockArray(value)) {
-        children[key] = value;
+        children[prop] = value;
       } else {
-        props[key] = value;
+        props[prop] = value;
       }
     });
 

@@ -10,7 +10,7 @@ import "./profile.scss";
 /**
  * Настройки пользователя
  */
-class Profile extends Block {
+class Profile extends Block<ProfileProps> {
   constructor(props: ProfileProps) {
     super({
       ...props,

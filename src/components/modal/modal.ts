@@ -7,7 +7,7 @@ import "./modal.scss";
 /**
  * Модальное окно
  */
-export class Modal extends Block {
+export class Modal extends Block<ModalProps> {
   constructor(props: ModalProps) {
     super({
       ...props,

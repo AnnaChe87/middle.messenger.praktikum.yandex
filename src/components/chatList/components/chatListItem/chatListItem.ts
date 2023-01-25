@@ -7,7 +7,7 @@ import "./chatListItem.scss";
 /**
  * Чат в списке чатов
  */
-export class ChatListItem extends Block {
+export class ChatListItem extends Block<ChatListItemProps> {
   constructor(props: ChatListItemProps) {
     props.classname = ["chat-list-item"];
     props.hasUnread = props.unreadCount > 0;

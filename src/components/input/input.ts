@@ -2,7 +2,7 @@ import { Block } from "../../core";
 import { InputProps } from "./input.types";
 const template = () => "";
 
-export class Input extends Block {
+export class Input extends Block<InputProps> {
   constructor(props: InputProps) {
     super(props, "input");
   }

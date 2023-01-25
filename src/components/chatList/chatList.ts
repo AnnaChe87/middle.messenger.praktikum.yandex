@@ -9,7 +9,7 @@ import "./chatList.scss";
 /**
  * Список чатов
  */
-export class ChatList extends Block {
+export class ChatList extends Block<ChatListProps> {
   constructor(props: ChatListProps) {
     props.classname = ["chat-list"];
     super(props);

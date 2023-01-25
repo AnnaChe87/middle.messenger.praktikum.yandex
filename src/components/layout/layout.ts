@@ -8,7 +8,7 @@ import "./layout.scss";
 /**
  * Общий слой для всех страниц
  */
-export class Layout extends Block {
+export class Layout extends Block<LayoutProps> {
   constructor(props: LayoutProps) {
     props.classname = ["container"];
     props.link = new Link({ href: "#", title: "На главную" });

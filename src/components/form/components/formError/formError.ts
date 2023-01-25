@@ -7,7 +7,7 @@ import "./formError.scss";
 /**
  * Ошибка валидации на форме
  */
-export class FormError extends Block {
+export class FormError extends Block<FormErrorProps> {
   constructor(props: FormErrorProps) {
     props.classname = ["form-error"];
     super(props, "p");

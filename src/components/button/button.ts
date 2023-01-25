@@ -7,7 +7,7 @@ import "./button.scss";
 /**
  * Кнопка
  */
-export class Button extends Block {
+export class Button extends Block<ButtonProps> {
   constructor(props: ButtonProps) {
     props.classname = [...(props.classname || []), "button"];
     super(props, "button");

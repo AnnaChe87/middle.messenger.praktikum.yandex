@@ -5,7 +5,7 @@ import template from "./form.hbs";
 /**
  * Форма
  */
-export class Form extends Block {
+export class Form extends Block<FormProps> {
   _formValidator: FormValidator;
   constructor(props: FormProps) {
     super(props, "form");

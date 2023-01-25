@@ -7,7 +7,7 @@ import "./menuItem.scss";
 /**
  * Пункт меню
  */
-export class MenuItem extends Block {
+export class MenuItem extends Block<MenuItemProps> {
   constructor(props: MenuItemProps) {
     props.classname = ["menu-item"];
     if (props.action) {

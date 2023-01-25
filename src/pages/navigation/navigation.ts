@@ -6,7 +6,7 @@ import template from "./navigation.hbs";
 /**
  * Навигация по страницам
  */
-class Navigation extends Block {
+class Navigation extends Block<NavigationProps> {
   constructor(props: NavigationProps) {
     props.classname = ["column"];
     super(props, "nav");

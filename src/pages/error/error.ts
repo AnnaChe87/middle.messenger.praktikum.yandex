@@ -8,7 +8,7 @@ import "./error.scss";
 /**
  * Ошибка
  */
-class Error extends Block {
+class Error extends Block<ErrorProps> {
   constructor(props: ErrorProps) {
     props.classname = ["error", "column"];
     props.link = new Link({ href: "#/chats", title: "Назад к чатам" });

@@ -9,7 +9,7 @@ import "./formItem.scss";
 /**
  * Поле формы
  */
-export class FormItem extends Block {
+export class FormItem extends Block<FormItemProps> {
   constructor({ classname, label, ...props }: FormItemProps) {
     super({
       classname: [...(classname || []), "form-item"],
