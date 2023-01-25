@@ -1,8 +1,10 @@
-import { Block } from "../../core";
+import { Block, FormValidator } from "../../core";
 import { FormProps } from "./form.types";
 import template from "./form.hbs";
-import { FormValidator } from "../../core/FormValidator";
 
+/**
+ * Форма
+ */
 export class Form extends Block {
   _formValidator: FormValidator;
   constructor(props: FormProps) {

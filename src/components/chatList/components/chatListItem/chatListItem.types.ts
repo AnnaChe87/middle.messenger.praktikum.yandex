@@ -1,5 +1,5 @@
 import { Props } from "../../../../index.types";
-import { MessageModel } from "../../../../mock/mock.types";
+import { MessageModel } from "../../../../mock";
 
 export type ChatListItemProps = Props & {
   id: number;

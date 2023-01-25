@@ -4,6 +4,9 @@ import template from "./formError.hbs";
 
 import "./formError.scss";
 
+/**
+ * Ошибка валидации на форме
+ */
 export class FormError extends Block {
   constructor(props: FormErrorProps) {
     props.classname = ["form-error"];

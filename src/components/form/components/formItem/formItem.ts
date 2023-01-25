@@ -1,10 +1,10 @@
 import { Block } from "../../../../core";
+import { Input } from "../../../input";
+import { FormError } from "../formError/formError";
 import { FormItemProps } from "./formItem.types";
 import template from "./formItem.hbs";
 
 import "./formItem.scss";
-import { Input } from "../../../input";
-import { FormError } from "../formError/formError";
 
 /**
  * Поле формы

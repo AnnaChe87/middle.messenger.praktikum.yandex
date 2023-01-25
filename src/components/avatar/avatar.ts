@@ -7,6 +7,9 @@ import template from "./avatar.hbs";
 
 import "./avatar.scss";
 
+/**
+ * Контрол отображения/изменения аватара в профиле
+ */
 export class Avatar extends Block {
   constructor(props: AvatarProps) {
     super({

@@ -10,5 +10,10 @@
 
 Сборка проекта: npm run build
 
+Проверка линтером: npm run lint
+
+Автоматическая правка ошибок линтером: npm run fix
+
 Pull Requests:
 sprint_1: https://github.com/AnnaChe87/middle.messenger.praktikum.yandex/pull/2
+sprint_2: https://github.com/AnnaChe87/middle.messenger.praktikum.yandex/pull/3

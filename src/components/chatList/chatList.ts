@@ -6,6 +6,9 @@ import template from "./chatList.hbs";
 
 import "./chatList.scss";
 
+/**
+ * Список чатов
+ */
 export class ChatList extends Block {
   constructor(props: ChatListProps) {
     props.classname = ["chat-list"];

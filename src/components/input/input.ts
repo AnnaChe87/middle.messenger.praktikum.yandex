@@ -1,6 +1,6 @@
 import { Block } from "../../core";
 import { InputProps } from "./input.types";
-import template from "./input.hbs";
+const template = () => "";
 
 export class Input extends Block {
   constructor(props: InputProps) {

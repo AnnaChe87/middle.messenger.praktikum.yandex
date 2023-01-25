@@ -1,5 +1,4 @@
 @import "src/styles/colors";
-@import "src/styles/mixins";
 
 .profile {
   align-items: center;
@@ -9,14 +8,6 @@
   &-header {
     align-items: center;
     margin-top: 60px;
-
-    &-avatar {
-      @include circle(130px, $color-gray-middle);
-
-      background-image: url("../../assets/icons/image.svg");
-      background-position: center;
-      background-repeat: no-repeat;
-    }
 
     &-name {
       margin-top: 20px;

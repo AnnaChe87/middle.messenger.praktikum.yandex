@@ -1,9 +1,9 @@
 import { Block } from "../../core";
+import { Button, Form, FormItem, Link } from "../../components";
 import { EntryProps } from "./entry.types";
 import template from "./entry.hbs";
 
 import "./entry.scss";
-import { Button, Form, FormItem, Link } from "../../components";
 
 /**
  * Авторизация/регистрация

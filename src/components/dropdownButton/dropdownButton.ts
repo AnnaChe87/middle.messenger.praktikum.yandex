@@ -4,6 +4,9 @@ import template from "./dropdownButton.hbs";
 
 import "./dropdownButton.scss";
 
+/**
+ * Кнопка с выпадающим меню
+ */
 export class DropdownButton extends Block {
   constructor(props: DropdownButtonProps) {
     props.classname = ["dropdown-button"];

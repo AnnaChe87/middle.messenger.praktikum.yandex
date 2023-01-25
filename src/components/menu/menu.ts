@@ -4,6 +4,9 @@ import template from "./menu.hbs";
 
 import "./menu.scss";
 
+/**
+ * Меню
+ */
 export class Menu extends Block {
   constructor(props: MenuProps) {
     props.classname = [

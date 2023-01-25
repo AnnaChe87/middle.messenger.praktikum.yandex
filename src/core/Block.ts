@@ -1,7 +1,7 @@
 import { v4 as makeUUID } from "uuid";
 import { EventBus } from "./EventBus";
 import { Props, Template } from "../index.types";
-import { isBlockArray } from "../utils/isBlockArray";
+import { isBlockArray } from "../utils";
 
 type MetaInfo = {
   tagName: string;
@@ -21,9 +21,9 @@ export class Block {
   private _key: string;
   private _element: HTMLElement;
   private _meta: MetaInfo;
+  private _children: Record<string, Block | Block[]>;
 
   props: Props;
-  private children: Record<string, Block | Block[]>;
   protected eventBus: () => BlockEventBus;
 
   constructor(props: Props, tagName?: string) {
@@ -35,7 +35,7 @@ export class Block {
     };
 
     this.props = this._makePropsProxy(props);
-    this.children = this._getChildren(props).children;
+    this._children = this._getChildren(props).children;
 
     this.eventBus = () => eventBus;
 
@@ -62,7 +62,7 @@ export class Block {
 
   _componentDidMount() {
     this.componentDidMount();
-    Object.values(this.children).forEach((child) => {
+    Object.values(this._children).forEach((child) => {
       if (Array.isArray(child)) {
         child.forEach((block) => block.componentDidMount());
       } else {
@@ -100,7 +100,7 @@ export class Block {
       return;
     }
 
-    Object.assign(this.children, this._getChildren(nextProps).children);
+    Object.assign(this._children, this._getChildren(nextProps).children);
     Object.assign(this.props, nextProps);
   };
 
@@ -151,7 +151,7 @@ export class Block {
 
     const stubs: Record<string, string | string[]> = {};
 
-    Object.entries(this.children).forEach(([key, value]) => {
+    Object.entries(this._children).forEach(([key, value]) => {
       if (Array.isArray(value)) {
         stubs[key] = value.map(
           (block) => `<div data-key="${block._key}"></div>`
@@ -164,7 +164,7 @@ export class Block {
     const htmlString = template({ ...props, ...stubs });
     fragment.innerHTML = htmlString;
 
-    Object.values(this.children).forEach((child) => {
+    Object.values(this._children).forEach((child) => {
       const arr = Array.isArray(child) ? child : [child];
 
       arr.forEach((block) => {

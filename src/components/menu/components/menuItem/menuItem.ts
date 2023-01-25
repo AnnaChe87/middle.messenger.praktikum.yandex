@@ -4,6 +4,9 @@ import template from "./menuItem.hbs";
 
 import "./menuItem.scss";
 
+/**
+ * Пункт меню
+ */
 export class MenuItem extends Block {
   constructor(props: MenuItemProps) {
     props.classname = ["menu-item"];

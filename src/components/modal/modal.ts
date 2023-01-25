@@ -4,6 +4,9 @@ import template from "./modal.hbs";
 
 import "./modal.scss";
 
+/**
+ * Модальное окно
+ */
 export class Modal extends Block {
   constructor(props: ModalProps) {
     super({
