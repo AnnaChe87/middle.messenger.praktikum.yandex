@@ -1,4 +1,4 @@
-@import "normalize.scss";
+@import "normalize";
 @import "./colors";
 @import "./fonts";
 @import "./mixins";
@@ -52,6 +52,11 @@ body {
   .column {
     display: flex;
     flex-flow: column nowrap;
+  }
+
+  .shadowed {
+    box-shadow: 0 0 6px $color-gray-dark;
+    border-radius: 12px;
   }
 
   ::-webkit-scrollbar {

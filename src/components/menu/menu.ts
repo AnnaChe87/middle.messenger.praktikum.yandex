@@ -11,6 +11,7 @@ export class Menu extends Block {
   constructor(props: MenuProps) {
     props.classname = [
       "menu",
+      "shadowed",
       props.direction?.[0] || "bottom",
       props.direction?.[1] || "right",
     ];
