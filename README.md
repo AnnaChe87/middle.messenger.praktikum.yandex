@@ -9,3 +9,6 @@
 Локальный запуск: npm run start
 
 Сборка проекта: npm run build
+
+Pull Requests:
+sprint_1: https://github.com/AnnaChe87/middle.messenger.praktikum.yandex/pull/2

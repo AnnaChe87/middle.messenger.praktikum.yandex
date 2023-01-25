@@ -11,6 +11,7 @@ export function getControls(
         classname: ["horizontal"],
         label: "Старый пароль",
         name: "oldPassword",
+        type: "password",
       }),
       new FormItem({
         classname: ["horizontal"],
