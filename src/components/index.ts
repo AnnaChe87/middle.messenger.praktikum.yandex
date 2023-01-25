@@ -6,3 +6,5 @@ export * from "./chat";
 export * from "./form";
 export * from "./menu";
 export * from "./dropdownButton";
+export * from "./avatar";
+export * from "./modal";

@@ -1,0 +1,28 @@
+@import "src/styles/colors";
+@import "src/styles/mixins";
+
+.avatar {
+  @include circle(130px, $color-gray-middle);
+
+  background-image: url("../../assets/icons/image.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  position: relative;
+
+  .overlay {
+    display: none;
+  }
+  &:hover {
+    .overlay {
+      @include circle(130px, $color-gray-dark);
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      inset: 0;
+      opacity: 0.8;
+      color: $color-white;
+    }
+  }
+}

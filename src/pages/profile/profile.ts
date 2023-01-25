@@ -1,5 +1,5 @@
 import { Block } from "../../core";
-import { Button, Form, Link } from "../../components";
+import { Avatar, Button, Form, Link } from "../../components";
 import { data } from "../../mock";
 import { getControls } from "./profile.utils";
 import { ProfileProps } from "./profile.types";
@@ -12,9 +12,12 @@ import "./profile.scss";
  */
 class Profile extends Block {
   constructor(props: ProfileProps) {
-    props.displayName = data.currentUser.display_name;
-    props.classname = ["profile"];
-    super(props);
+    super({
+      ...props,
+      classname: ["profile"],
+      displayName: data.currentUser.display_name,
+      avatar: new Avatar({}),
+    });
   }
 
   render() {
