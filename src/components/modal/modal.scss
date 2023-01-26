@@ -3,8 +3,7 @@
 .modal-overlay {
   position: absolute;
   inset: 0;
-  background-color: $color-gray-dark;
-  opacity: 0.8;
+  background-color: $color-overlay;
   display: none;
 
   .modal {

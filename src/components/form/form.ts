@@ -8,6 +8,7 @@ import template from "./form.hbs";
 export class Form extends Block<FormProps> {
   _formValidator: FormValidator;
   constructor(props: FormProps) {
+    props.classname = [...(props.classname || []), "column"];
     super(props, "form");
     this._formValidator = new FormValidator(this);
     this.setProps({

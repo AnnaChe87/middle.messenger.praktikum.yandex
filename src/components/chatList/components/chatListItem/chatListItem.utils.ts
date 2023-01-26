@@ -8,7 +8,7 @@ export function mapChatToChatListItemProps(chat: ChatModel): ChatListItemProps {
     id,
     title,
     lastMessage: last_message,
-    unreadCount: unread_count,
+    unreadCount: unread_count > 0 ? unread_count : undefined,
     formattedTime: getTime(last_message.time),
   };
 }

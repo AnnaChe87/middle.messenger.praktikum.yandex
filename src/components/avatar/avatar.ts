@@ -14,29 +14,56 @@ export class Avatar extends Block<AvatarProps> {
   constructor(props: AvatarProps) {
     super({
       ...props,
-      changeAvatarModal: new Modal({
-        title: "Загрузите файл",
-        content: new Form({
-          controls: [new FormItem({ type: "file", name: "avatar" })],
-          btn: new Button({
-            title: "Поменять",
-            type: "submit",
-          }),
-        }),
-      }),
       btn: new Button({
         classname: ["overlay"],
         title: "Поменять аватар",
       }),
     });
-    this.props.btn.setProps({
-      events: {
-        click: () => this.props.changeAvatarModal.show(),
-      },
-    });
+    this.createModal();
+    this.initEvents();
   }
 
   render() {
     return this.compile(template, this.props);
+  }
+
+  createModal() {
+    this.setProps({
+      changeAvatarModal: new Modal({
+        title: "Загрузите файл",
+        content: new Form({
+          controls: [
+            new FormItem({
+              type: "file",
+              name: "avatar",
+              events: {
+                change: (e: InputEvent) => this.onFileChange(e),
+              },
+            }),
+          ],
+          btn: new Button({
+            title: "Поменять",
+            type: "submit",
+            classname: ["change-avatar-modal"],
+          }),
+        }),
+      }),
+    });
+  }
+
+  initEvents() {
+    this.props.btn!.setProps({
+      events: {
+        click: () => this.props.changeAvatarModal!.show(),
+      },
+    });
+  }
+
+  onFileChange({ target }: InputEvent) {
+    const value = (target as HTMLInputElement).value;
+
+    this.props.changeAvatarModal!.setProps({
+      title: value ? "Файл загружен" : "Загрузите файл",
+    });
   }
 }

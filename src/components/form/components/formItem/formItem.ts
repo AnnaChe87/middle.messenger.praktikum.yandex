@@ -1,5 +1,6 @@
 import { Block } from "../../../../core";
 import { Input } from "../../../input";
+import { Upload } from "../../../upload/upload";
 import { FormError } from "../formError/formError";
 import { FormItemProps } from "./formItem.types";
 import template from "./formItem.hbs";
@@ -15,7 +16,7 @@ export class FormItem extends Block<FormItemProps> {
       classname: [...(classname || []), "form-item"],
       label,
       errors: new FormError({ text: "" }),
-      input: new Input(props),
+      input: props.type === "file" ? new Upload(props) : new Input(props),
     });
   }
 

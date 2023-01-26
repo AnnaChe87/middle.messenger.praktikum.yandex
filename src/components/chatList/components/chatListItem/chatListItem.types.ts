@@ -4,9 +4,8 @@ import { MessageModel } from "../../../../mock";
 export type ChatListItemProps = Props & {
   id: number;
   title: string;
-  unreadCount: number;
   lastMessage: MessageModel;
   formattedTime: string;
+  unreadCount?: number;
   isSelected?: boolean;
-  hasUnread?: boolean;
 };
