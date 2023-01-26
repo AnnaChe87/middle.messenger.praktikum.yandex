@@ -14,6 +14,23 @@
     input {
       border-bottom: 1px solid $color-blue;
     }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .upload {
+      &-value {
+        color: $color-gray-dark;
+        text-decoration-line: none;
+      }
+
+      &-label {
+        color: $color-blue;
+        cursor: pointer;
+        text-decoration-line: underline;
+      }
+    }
   }
 
   &.single {

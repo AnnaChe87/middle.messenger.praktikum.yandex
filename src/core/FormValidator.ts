@@ -36,6 +36,10 @@ const rules: Record<string, Rule> = {
     regExp: /^.+$/,
     error: "не может быть пустым",
   },
+  avatar: {
+    regExp: /^.+$/,
+    error: "выберите файл",
+  },
 };
 
 export class FormValidator {
@@ -55,6 +59,9 @@ export class FormValidator {
         events: {
           focus: () => this.isValidFieldValue(name),
           blur: () => this.isValidFieldValue(name),
+          ...(input.props.type === "file"
+            ? { change: () => this.isValidFieldValue(name) }
+            : {}),
         },
       });
       this._formItems[name] = ctrl;
@@ -79,10 +86,10 @@ export class FormValidator {
     }
     const value = (input.getContent() as HTMLInputElement).value;
     if (!regExp.test(value)) {
-      errors.setProps({ text: error });
+      errors?.setProps({ text: error });
       return false;
     }
-    errors.setProps({ text: "" });
+    errors?.setProps({ text: "" });
     return true;
   }
 }
