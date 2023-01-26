@@ -1,0 +1,23 @@
+@import "src/styles/colors";
+
+.entry {
+  width: 340px;
+  background-color: $color-white;
+  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+  border-radius: 12px;
+  padding: 30px;
+
+  &-header {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-content {
+    flex: 1;
+  }
+
+  &-footer {
+    text-align: center;
+    margin-top: 14px;
+  }
+}

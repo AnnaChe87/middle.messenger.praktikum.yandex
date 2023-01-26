@@ -1,10 +1,10 @@
 @import "src/styles/colors";
 
 .link {
-    color: $color-blue;
-    text-decoration: none;
+  color: $color-blue;
+  text-decoration: none;
 
-    &.red {
-        color: $color-red;
-    }
+  &.red {
+    color: $color-red;
+  }
 }

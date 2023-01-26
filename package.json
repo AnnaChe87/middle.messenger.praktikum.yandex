@@ -6,18 +6,27 @@
   "scripts": {
     "dev": "parcel src/index.html --no-cache --open --port=3000",
     "start": "parcel src/index.html --no-cache --open --port=3000",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "lint": "node_modules/.bin/eslint .",
+    "fix": "node_modules/.bin/eslint . --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "2.8.2",
+    "@typescript-eslint/eslint-plugin": "5.48.2",
+    "@typescript-eslint/parser": "5.48.2",
+    "eslint": "8.2.0",
     "parcel": "2.8.2",
-    "parcel-transformer-hbs": "1.0.4"
+    "parcel-transformer-hbs": "1.0.4",
+    "stylelint": "14.16.1",
+    "stylelint-config-standard-scss": "6.1.0",
+    "typescript": "4.9.4"
   },
   "dependencies": {
     "express": "4.18.2",
-    "less": "4.1.3"
+    "less": "4.1.3",
+    "uuid": "9.0.0"
   }
 }

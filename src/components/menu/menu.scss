@@ -1,0 +1,18 @@
+@import "src/styles/colors";
+
+.menu {
+  position: absolute;
+  background-color: $color-white;
+
+  &.top {
+    bottom: 100%;
+  }
+
+  &.right {
+    left: 0;
+  }
+
+  &.left {
+    right: 0;
+  }
+}

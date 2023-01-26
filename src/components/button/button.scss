@@ -1,9 +1,14 @@
 @import "src/styles/colors";
 
 .button {
-    width: 100%;
-    background-color: $color-blue;
-    color: $color-white;
-    padding: 12px;
-    border-radius: 8px;
+  width: 100%;
+  background-color: $color-blue;
+  color: $color-white;
+  padding: 12px;
+  border-radius: 8px;
+
+  &.icon-btn {
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }

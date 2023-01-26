@@ -1,0 +1,57 @@
+@import "src/styles/colors";
+
+.menu-item {
+  white-space: nowrap;
+  position: relative;
+  line-height: 24px;
+  padding: 15px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-blue-light;
+  }
+
+  &.with-icon {
+    padding-left: 50px;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 15;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &.add {
+    &::before {
+      background-image: url("../../../../assets/icons/add_circle.svg");
+    }
+  }
+
+  &.remove {
+    &::before {
+      background-image: url("../../../../assets/icons/add_circle.svg");
+      transform: rotate(45deg);
+    }
+  }
+
+  &.attach-content {
+    &::before {
+      background-image: url("../../../../assets/icons/attach_photo.svg");
+    }
+  }
+
+  &.attach-file {
+    &::before {
+      background-image: url("../../../../assets/icons/attach_file.svg");
+    }
+  }
+
+  &.attach-location {
+    &::before {
+      background-image: url("../../../../assets/icons/geolocation.svg");
+    }
+  }
+}

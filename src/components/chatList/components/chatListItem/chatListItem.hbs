@@ -1,0 +1,14 @@
+<div class="chat-list-item-avatar">
+</div>
+<div class="chat-list-item-info-message column">
+  <h4>{{title}}</h4>
+  <p class="text">{{lastMessage.content}}</p>
+</div>
+<div class="chat-list-item-info-time column">
+  <small class="time">{{formattedTime}}</small>
+  <div class="count-container">
+    {{#if hasUnread}}
+      <div class="count">{{{unreadCount}}}</div>
+    {{/if}}
+  </div>
+</div>
