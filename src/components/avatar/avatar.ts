@@ -1,8 +1,7 @@
-import { Block } from "../../core";
+import { Block, ModalService } from "../../core";
 import { AvatarProps } from "./avatar.types";
 import { Button } from "../button";
-import { Form, FormItem } from "../form";
-import { Modal } from "../modal";
+import { changeAvatarModal } from "./avatar.utils";
 import template from "./avatar.hbs";
 
 import "./avatar.scss";
@@ -11,6 +10,7 @@ import "./avatar.scss";
  * Контрол отображения/изменения аватара в профиле
  */
 export class Avatar extends Block<AvatarProps> {
+  modalService = ModalService.getInstance();
   constructor(props: AvatarProps) {
     super({
       ...props,
@@ -19,7 +19,6 @@ export class Avatar extends Block<AvatarProps> {
         title: "Поменять аватар",
       }),
     });
-    this.createModal();
     this.initEvents();
   }
 
@@ -27,43 +26,22 @@ export class Avatar extends Block<AvatarProps> {
     return this.compile(template, this.props);
   }
 
-  createModal() {
-    this.setProps({
-      changeAvatarModal: new Modal({
-        title: "Загрузите файл",
-        content: new Form({
-          controls: [
-            new FormItem({
-              type: "file",
-              name: "avatar",
-              events: {
-                change: (e: InputEvent) => this.onFileChange(e),
-              },
-            }),
-          ],
-          btn: new Button({
-            title: "Поменять",
-            type: "submit",
-            classname: ["change-avatar-modal"],
-          }),
-        }),
-      }),
-    });
-  }
-
   initEvents() {
     this.props.btn!.setProps({
       events: {
-        click: () => this.props.changeAvatarModal!.show(),
+        click: () =>
+          this.modalService.openModal(
+            changeAvatarModal(this.props.value, this.onFileChange)
+          ),
       },
     });
   }
 
-  onFileChange({ target }: InputEvent) {
+  onFileChange = ({ target }: InputEvent) => {
     const value = (target as HTMLInputElement).value;
 
-    this.props.changeAvatarModal!.setProps({
+    this.modalService.modal.setProps({
       title: value ? "Файл загружен" : "Загрузите файл",
     });
-  }
+  };
 }

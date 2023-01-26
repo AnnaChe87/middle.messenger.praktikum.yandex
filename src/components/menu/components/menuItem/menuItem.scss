@@ -11,6 +11,14 @@
     background-color: $color-blue-light;
   }
 
+  &:first-child:hover {
+    border-radius: 12px 12px 0 0;
+  }
+
+  &:last-child:hover {
+    border-radius: 0 0 12px 12px;
+  }
+
   &.with-icon {
     padding-left: 50px;
 

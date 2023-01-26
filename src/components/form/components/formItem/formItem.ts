@@ -12,7 +12,7 @@ import "./formItem.scss";
 export class FormItem extends Block<FormItemProps> {
   private _isFile: boolean;
   constructor(props: FormItemProps) {
-    const { classname = [], label, value, ...inputProps } = props;
+    const { classname = [], label, value = "", ...inputProps } = props;
     const isFile = props.type === "file";
 
     super({

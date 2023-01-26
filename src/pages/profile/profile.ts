@@ -16,7 +16,7 @@ class Profile extends Block<ProfileProps> {
       ...props,
       classname: ["profile"],
       displayName: data.currentUser.display_name,
-      avatar: new Avatar({}),
+      avatar: new Avatar({ value: data.currentUser.avatar }),
     });
   }
 

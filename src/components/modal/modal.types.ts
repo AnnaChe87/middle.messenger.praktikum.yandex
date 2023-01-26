@@ -3,5 +3,5 @@ import { Props } from "../../index.types";
 
 export type ModalProps = Props & {
   title?: string;
-  content: Block<Props>;
+  content?: Block<Props>;
 };
