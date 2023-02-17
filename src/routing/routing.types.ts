@@ -1,4 +1,5 @@
 import { Block } from "../core";
+import { Props } from "../index.types";
 
 export enum RouteNames {
   BASE = "/",
@@ -12,4 +13,4 @@ export enum RouteNames {
   PROFILE_PASS = "/profile-pass",
 }
 
-export type Route = Block;
+export type Route = Block<Props>;

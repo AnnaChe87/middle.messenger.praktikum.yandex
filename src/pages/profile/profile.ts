@@ -27,9 +27,9 @@ class Profile extends Block<ProfileProps> {
 
 export const profile = new Profile({
   links: [
-    new Link({ href: "#/profile-edit", title: "Изменить данные" }),
-    new Link({ href: "#/profile-pass", title: "Изменить пароль" }),
-    new Link({ href: "#", title: "Выйти", color: "red" }),
+    new Link({ href: "/profile-edit", title: "Изменить данные" }),
+    new Link({ href: "/profile-pass", title: "Изменить пароль" }),
+    new Link({ href: "", title: "Выйти", color: "red" }),
   ],
   form: new Form({
     controls: getControls(),

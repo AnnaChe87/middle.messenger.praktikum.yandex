@@ -37,7 +37,7 @@ export const signin = new Entry({
     ],
     btn: new Button({ title: "Зарегистрироваться", type: "submit" }),
   }),
-  link: new Link({ href: "#/login", title: "Войти" }),
+  link: new Link({ href: "/login", title: "Войти" }),
 });
 
 export const login = new Entry({
@@ -52,5 +52,5 @@ export const login = new Entry({
       type: "submit",
     }),
   }),
-  link: new Link({ href: "#/signin", title: "Нет аккаунта?" }),
+  link: new Link({ href: "/signin", title: "Нет аккаунта?" }),
 });

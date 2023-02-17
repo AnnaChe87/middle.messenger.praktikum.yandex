@@ -11,7 +11,7 @@ import "./error.scss";
 class Error extends Block<ErrorProps> {
   constructor(props: ErrorProps) {
     props.classname = ["error", "column"];
-    props.link = new Link({ href: "#/chats", title: "Назад к чатам" });
+    props.link = new Link({ href: "/chats", title: "Назад к чатам" });
     super(props);
   }
 

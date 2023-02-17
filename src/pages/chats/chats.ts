@@ -22,7 +22,7 @@ class Chats extends Block<ChatsProps> {
     super({
       ...props,
       classname: ["chats"],
-      link: new Link({ href: "#/profile", title: "Профиль" }),
+      link: new Link({ href: "/profile", title: "Профиль" }),
       search: new FormItem({
         name: "message",
         type: "search",

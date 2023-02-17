@@ -1,15 +1,26 @@
 import { Layout } from "./components";
-import { render } from "./core";
-import { Routes, RouteNames } from "./routing";
+import { Router } from "./routing/Routing";
+import {
+  error404,
+  error500,
+  login,
+  navigation,
+  profile,
+  profileEdit,
+  profilePass,
+  signin,
+} from "./pages";
+import { RouteNames } from "./routing";
 
 import "./styles/styles.scss";
 
-function resolveRoute() {
-  const route =
-    (window.location.hash.slice(1) as RouteNames) || RouteNames.BASE;
-  const content = Routes[route];
-  render("#root", new Layout({ content }));
-}
-
-window.addEventListener("load", resolveRoute);
-window.addEventListener("hashchange", resolveRoute);
+new Router("#root")
+  .use(RouteNames.BASE, Layout, { content: navigation })
+  .use(RouteNames.LOGIN, Layout, { content: login })
+  .use(RouteNames.SIGNIN, Layout, { content: signin })
+  .use(RouteNames.ERROR404, Layout, { content: error404 })
+  .use(RouteNames.ERROR500, Layout, { content: error500 })
+  .use(RouteNames.PROFILE, Layout, { content: profile })
+  .use(RouteNames.PROFILE_EDIT, Layout, { content: profileEdit })
+  .use(RouteNames.PROFILE_PASS, Layout, { content: profilePass })
+  .start();

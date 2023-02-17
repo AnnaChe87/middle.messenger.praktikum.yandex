@@ -1,2 +1,2 @@
-export * from "./routing.consts";
+export * from "./Routing";
 export * from "./routing.types";
