@@ -1,6 +1,7 @@
 import { Layout } from "./components";
 import { Router } from "./routing/Routing";
 import {
+  chats,
   error404,
   error500,
   login,
@@ -10,17 +11,34 @@ import {
   profilePass,
   signin,
 } from "./pages";
-import { RouteNames } from "./routing";
+import { ROUTE_NAMES } from "./routing";
 
 import "./styles/styles.scss";
+import { Actions } from "./core";
 
-new Router("#root")
-  .use(RouteNames.BASE, Layout, { content: navigation })
-  .use(RouteNames.LOGIN, Layout, { content: login })
-  .use(RouteNames.SIGNIN, Layout, { content: signin })
-  .use(RouteNames.ERROR404, Layout, { content: error404 })
-  .use(RouteNames.ERROR500, Layout, { content: error500 })
-  .use(RouteNames.PROFILE, Layout, { content: profile })
-  .use(RouteNames.PROFILE_EDIT, Layout, { content: profileEdit })
-  .use(RouteNames.PROFILE_PASS, Layout, { content: profilePass })
-  .start();
+const unauthorizedGuard = () => {
+  return !Actions.getProfile()?.id;
+};
+
+export const router = new Router("#root")
+  .use(ROUTE_NAMES.BASE, Layout, { content: navigation })
+  .use(ROUTE_NAMES.LOGIN, Layout, { content: login })
+  .use(ROUTE_NAMES.SIGNIN, Layout, { content: signin })
+  .use(ROUTE_NAMES.CHATS, Layout, { content: chats }, unauthorizedGuard)
+  .use(ROUTE_NAMES.ERROR404, Layout, { content: error404 })
+  .use(ROUTE_NAMES.ERROR500, Layout, { content: error500 })
+  .use(ROUTE_NAMES.PROFILE, Layout, { content: profile }, unauthorizedGuard)
+  .use(
+    ROUTE_NAMES.PROFILE_EDIT,
+    Layout,
+    { content: profileEdit },
+    unauthorizedGuard
+  )
+  .use(
+    ROUTE_NAMES.PROFILE_PASS,
+    Layout,
+    { content: profilePass },
+    unauthorizedGuard
+  );
+
+router.start();

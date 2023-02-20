@@ -19,11 +19,9 @@ type HTTPMethod = (
 
 function queryStringify(data: Object): string {
   const entries = Object.entries(data);
-  return entries
-    .reduce((acc, [key, value], index) => {
-      return `${acc}${key}=${value}${index === entries.length - 1 ? "" : "&"}`;
-    }, "?")
-    .slice(0, -1);
+  return entries.reduce((acc, [key, value], index) => {
+    return `${acc}${key}=${value}${index === entries.length - 1 ? "" : "&"}`;
+  }, "?");
 }
 
 export class HTTPTransport {
@@ -63,6 +61,8 @@ export class HTTPTransport {
     );
   };
 
+  private readonly API_PATH = "https://ya-praktikum.tech/api/v2";
+
   request = (
     url: string,
     options: Options,
@@ -72,11 +72,13 @@ export class HTTPTransport {
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      xhr.open(method, `${this.API_PATH}${url}`);
       xhr.timeout = timeout;
       Object.entries(headers || {}).forEach(([key, value]) => {
         xhr.setRequestHeader(key, value);
       });
+      xhr.withCredentials = true;
+      xhr.responseType = "json";
 
       xhr.onload = function () {
         resolve(xhr);
@@ -89,6 +91,7 @@ export class HTTPTransport {
       if (method === METHODS.GET && !data) {
         xhr.send();
       } else {
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(data));
       }
     });

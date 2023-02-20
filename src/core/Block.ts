@@ -19,7 +19,7 @@ enum EVENTS {
 
 type BlockEventBus = EventBus<EVENTS>;
 
-export class Block<T extends Props> {
+export class Block<T extends Props = Props> {
   private _key: string;
   private _element: HTMLElement;
   private _meta: MetaInfo<T>;

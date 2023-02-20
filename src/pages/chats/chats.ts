@@ -1,18 +1,19 @@
 import { Block } from "../../core";
 import { ChatsProps } from "./chats.types";
 import {
+  Button,
   Chat,
   ChatList,
-  ChatListItem,
+  Form,
   FormItem,
   Link,
-  mapChatToChatListItemProps,
-  mapChatToMessages,
+  Modal,
 } from "../../components";
-import { data } from "../../mock";
 import template from "./chats.hbs";
 
 import "./chats.scss";
+import { chatsController } from "../../controllers/chats.controller";
+import { DEFAULT_CHATS_PARAMS } from "../../api";
 
 /**
  * Список чатов и лента переписки
@@ -29,6 +30,18 @@ class Chats extends Block<ChatsProps> {
         classname: ["single", "chats-navigation-search"],
         placeholder: "Поиск",
       }),
+      btn: new Button({ classname: ["icon-btn"] }),
+      addChatModal: new Modal({
+        title: "Создание чата",
+        content: new Form({
+          controls: [new FormItem({ name: "title", label: "Название чата" })],
+          btn: new Button({ title: "Создать", type: "submit" }),
+          handleSubmit: ({ title }: { title: string }) =>
+            chatsController.createChat(title),
+        }),
+      }),
+      currentChat: new Chat({}),
+      chatList: new ChatList({}),
     });
     this.initEvents();
   }
@@ -37,8 +50,17 @@ class Chats extends Block<ChatsProps> {
     this.props.search!.props.input.setProps({
       events: {
         input: (e: InputEvent) => {
-          this.props.chatList.filterChats((e.target as HTMLInputElement).value);
+          chatsController.getChats({
+            ...DEFAULT_CHATS_PARAMS,
+            title: (e.target as HTMLInputElement).value,
+          });
         },
+      },
+    });
+
+    this.props.btn!.setProps({
+      events: {
+        click: () => this.props.addChatModal!.show(),
       },
     });
   }
@@ -48,15 +70,4 @@ class Chats extends Block<ChatsProps> {
   }
 }
 
-export const chats = new Chats({
-  chatList: new ChatList({
-    items: data.chats.map(
-      (chat) => new ChatListItem(mapChatToChatListItemProps(chat))
-    ),
-  }),
-  currentChat: new Chat({
-    classname: ["chats-chat"],
-    title: data.chats[0].title,
-    messages: mapChatToMessages(data.chat),
-  }),
-});
+export const chats = new Chats({});

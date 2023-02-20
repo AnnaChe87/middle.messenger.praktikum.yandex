@@ -1,12 +1,11 @@
+import { LastMessageResponseContract } from "../../../../api";
 import { Props } from "../../../../index.types";
-import { MessageModel } from "../../../../mock";
 
 export type ChatListItemProps = Props & {
   id: number;
   title: string;
   unreadCount: number;
-  lastMessage: MessageModel;
+  lastMessage: LastMessageResponseContract;
   formattedTime: string;
-  isSelected?: boolean;
   hasUnread?: boolean;
 };

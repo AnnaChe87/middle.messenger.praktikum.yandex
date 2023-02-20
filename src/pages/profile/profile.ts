@@ -1,9 +1,9 @@
-import { Block } from "../../core";
+import { Actions, Block } from "../../core";
 import { Avatar, Button, Form, Link } from "../../components";
-import { data } from "../../mock";
 import { getControls } from "./profile.utils";
 import { ProfileProps } from "./profile.types";
 import template from "./profile.hbs";
+import { authController } from "../../controllers";
 
 import "./profile.scss";
 
@@ -15,7 +15,7 @@ class Profile extends Block<ProfileProps> {
     super({
       ...props,
       classname: ["profile"],
-      displayName: data.currentUser.display_name,
+      displayName: Actions.getProfile()?.display_name,
       avatar: new Avatar({}),
     });
   }
@@ -29,23 +29,36 @@ export const profile = new Profile({
   links: [
     new Link({ href: "/profile-edit", title: "Изменить данные" }),
     new Link({ href: "/profile-pass", title: "Изменить пароль" }),
-    new Link({ href: "", title: "Выйти", color: "red" }),
+    new Link({
+      href: "#",
+      title: "Выйти",
+      color: "red",
+      events: {
+        click: (e) => {
+          e?.preventDefault();
+          authController.logout();
+        },
+      },
+    }),
   ],
   form: new Form({
-    controls: getControls(),
+    controls: getControls({ user: Actions.getProfile() }),
   }),
 });
 
 export const profileEdit = new Profile({
   form: new Form({
-    controls: getControls(true),
+    controls: getControls({ isEdit: true, user: Actions.getProfile() }),
     btn: new Button({ title: "Сохранить", type: "submit" }),
   }),
 });
 
 export const profilePass = new Profile({
   form: new Form({
-    controls: getControls(true, true),
+    controls: getControls({
+      isEdit: true,
+      isPassword: true,
+    }),
     btn: new Button({ title: "Сохранить", type: "submit" }),
   }),
 });

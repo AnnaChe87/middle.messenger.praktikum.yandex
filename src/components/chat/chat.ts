@@ -1,5 +1,5 @@
-import { Block } from "../../core";
-import { ChatProps } from "./chat.types";
+import { Actions, Block } from "../../core";
+import { ChatProps, FormDataType } from "./chat.types";
 import template from "./chat.hbs";
 
 import "./chat.scss";
@@ -8,12 +8,18 @@ import { FormItem } from "../form";
 import { Form } from "../form";
 import { DropdownButton } from "../dropdownButton";
 import { Menu, MenuItem } from "../menu";
+import { EVENTS, Store } from "../../core/Store";
+import { Socket } from "../../core/Socket";
+import { Message } from "./components";
 
 /**
  * Лента переписки с формой ввода сообщения
  */
 export class Chat extends Block<ChatProps> {
+  _socket: Socket;
+
   constructor(props: ChatProps) {
+    const store = new Store();
     super({
       ...props,
       classname: ["chat", "column", ...(props.classname || [])],
@@ -48,8 +54,24 @@ export class Chat extends Block<ChatProps> {
           }),
         ],
         btn: new Button({ classname: ["icon-btn"], type: "submit" }),
+        handleSubmit: (data: FormDataType) => this._socket.message(data),
       }),
     });
+
+    store.on(EVENTS.UPDATE_CURRENT_CHAT, () => this._initSocket());
+    store.on(EVENTS.UPDATE_MESSAGES, () =>
+      this.setProps({
+        messages: Actions.getMessages().map((props) => new Message(props)),
+      })
+    );
+  }
+
+  _initSocket() {
+    const socketInfo = Actions.getSocketInfo();
+    if (!socketInfo) return;
+
+    const { token, userId, chatId } = socketInfo;
+    this._socket = new Socket(userId, chatId, token);
   }
 
   render() {

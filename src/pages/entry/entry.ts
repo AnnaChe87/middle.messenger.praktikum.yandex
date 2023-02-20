@@ -4,11 +4,12 @@ import { EntryProps } from "./entry.types";
 import template from "./entry.hbs";
 
 import "./entry.scss";
+import { authController } from "../../controllers/auth.controller";
 
 /**
  * Авторизация/регистрация
  */
-class Entry extends Block<EntryProps> {
+export class Entry extends Block<EntryProps> {
   constructor(props: EntryProps) {
     props.classname = ["entry"];
     super(props);
@@ -36,6 +37,7 @@ export const signin = new Entry({
       new FormItem({ label: "Телефон", name: "phone" }),
     ],
     btn: new Button({ title: "Зарегистрироваться", type: "submit" }),
+    handleSubmit: authController.signup,
   }),
   link: new Link({ href: "/login", title: "Войти" }),
 });
@@ -51,6 +53,7 @@ export const login = new Entry({
       title: "Войти",
       type: "submit",
     }),
+    handleSubmit: authController.signin,
   }),
   link: new Link({ href: "/signin", title: "Нет аккаунта?" }),
 });

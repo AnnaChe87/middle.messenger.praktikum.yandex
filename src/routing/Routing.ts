@@ -1,11 +1,12 @@
 import { Props } from "../index.types";
 import { Block } from "../core/Block";
+import { ROUTE_NAMES } from "./routing.types";
 
 function isEqual(lhs: string, rhs: string) {
   return lhs === rhs;
 }
 
-function render(query: string, block: Block<Props>) {
+function render(query: string, block: Block) {
   const root = document.querySelector(query) as HTMLElement;
   root.innerHTML = "";
 
@@ -18,12 +19,19 @@ class Route {
   _blockClass: any;
   _block: Block<Props> | null;
   _props: Props;
+  _guard?: () => boolean;
 
-  constructor(pathname: string, view: Block<Props>, props: Props) {
+  constructor(
+    pathname: string,
+    view: Block,
+    props: Props,
+    guard?: () => boolean
+  ) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;
     this._props = props;
+    this._guard = guard;
   }
 
   navigate(pathname: string) {
@@ -55,15 +63,15 @@ class Route {
 }
 
 export class Router {
-  static __instance: Router;
+  static _instance: Router;
   routes: Route[];
   history: History;
   _currentRoute: Route | null;
   _rootQuery: string;
 
   constructor(rootQuery: string) {
-    if (Router.__instance) {
-      return Router.__instance;
+    if (Router._instance) {
+      return Router._instance;
     }
 
     this.routes = [];
@@ -71,14 +79,19 @@ export class Router {
     this._currentRoute = null;
     this._rootQuery = rootQuery;
 
-    Router.__instance = this;
+    Router._instance = this;
   }
 
-  use(pathname: string, block: any, props: Props = {}) {
-    const route = new Route(pathname, block, {
-      ...props,
-      rootQuery: this._rootQuery,
-    });
+  use(pathname: string, block: any, props: Props = {}, guard?: () => boolean) {
+    const route = new Route(
+      pathname,
+      block,
+      {
+        ...props,
+        rootQuery: this._rootQuery,
+      },
+      guard
+    );
     this.routes.push(route);
     return this;
   }
@@ -93,6 +106,14 @@ export class Router {
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
     if (!route) {
+      this.go(ROUTE_NAMES.ERROR404);
+
+      return;
+    }
+
+    if (route._guard?.()) {
+      this.go(ROUTE_NAMES.LOGIN);
+
       return;
     }
 

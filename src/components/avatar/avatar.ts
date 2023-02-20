@@ -29,9 +29,9 @@ export class Avatar extends Block<AvatarProps> {
         title: "Поменять аватар",
       }),
     });
-    this.props.btn.setProps({
+    this.props?.btn?.setProps({
       events: {
-        click: () => this.props.changeAvatarModal.show(),
+        click: () => this.props?.changeAvatarModal?.show(),
       },
     });
   }

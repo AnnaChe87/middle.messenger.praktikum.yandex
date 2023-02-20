@@ -15,7 +15,7 @@ export class Form extends Block<FormProps> {
         submit: (e: SubmitEvent) => {
           e?.preventDefault();
           if (this._formValidator.isValidForm()) {
-            this.logValues();
+            this.props.handleSubmit?.(this.getValues());
           }
         },
       },
@@ -26,12 +26,13 @@ export class Form extends Block<FormProps> {
     return this.compile(template, this.props);
   }
 
-  logValues() {
+  getValues() {
     const controls = this.getContent().querySelectorAll("[name]");
     const values: Record<string, string> = {};
     controls.forEach(
       (ctrl: HTMLInputElement) => (values[ctrl.name] = ctrl.value)
     );
-    console.log(values);
+
+    return values;
   }
 }
