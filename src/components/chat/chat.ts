@@ -1,8 +1,5 @@
-import { Actions, Block } from "../../core";
+import { Actions, Block, ModalService } from "../../core";
 import { ChatProps, FormDataType } from "./chat.types";
-import template from "./chat.hbs";
-
-import "./chat.scss";
 import { Button } from "../button";
 import { FormItem } from "../form";
 import { Form } from "../form";
@@ -11,6 +8,10 @@ import { Menu, MenuItem } from "../menu";
 import { EVENTS, Store } from "../../core/Store";
 import { Socket } from "../../core/Socket";
 import { Message } from "./components";
+import { onAddUser, onDeleteUser } from "./chat.utils";
+import template from "./chat.hbs";
+
+import "./chat.scss";
 
 /**
  * Лента переписки с формой ввода сообщения
@@ -18,6 +19,7 @@ import { Message } from "./components";
 export class Chat extends Block<ChatProps> {
   _socket: Socket;
 
+  modalService: ModalService = ModalService.getInstance();
   constructor(props: ChatProps) {
     const store = new Store();
     super({
@@ -27,8 +29,20 @@ export class Chat extends Block<ChatProps> {
         btn: new Button({ classname: ["icon-btn"] }),
         menu: new Menu({
           items: [
-            new MenuItem({ action: "add", title: "Добавить пользователя" }),
-            new MenuItem({ action: "remove", title: "Удалить пользователя" }),
+            new MenuItem({
+              action: "add",
+              title: "Добавить пользователя",
+              events: {
+                click: () => this.modalService.openModal(onAddUser()),
+              },
+            }),
+            new MenuItem({
+              action: "remove",
+              title: "Удалить пользователя",
+              events: {
+                click: () => this.modalService.openModal(onDeleteUser()),
+              },
+            }),
           ],
           direction: ["bottom", "left"],
         }),

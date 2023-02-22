@@ -13,7 +13,6 @@ export class ChatListItem extends Block<ChatListItemProps> {
     const store = new Store();
 
     props.classname = ["chat-list-item"];
-    props.hasUnread = props.unreadCount > 0;
     super(props);
 
     store.on(EVENTS.UPDATE_CURRENT_CHAT, () => this.toggleSelect());

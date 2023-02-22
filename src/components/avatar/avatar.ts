@@ -1,8 +1,7 @@
-import { Actions, Block, EVENTS, Store } from "../../core";
+import { Actions, Block, EVENTS, Store, ModalService } from "../../core";
 import { AvatarProps } from "./avatar.types";
 import { Button } from "../button";
-import { Form, FormItem } from "../form";
-import { Modal } from "../modal";
+import { changeAvatarModal } from "./avatar.utils";
 import template from "./avatar.hbs";
 
 import "./avatar.scss";
@@ -12,6 +11,7 @@ import { profileController } from "../../controllers";
  * Контрол отображения/изменения аватара в профиле
  */
 export class Avatar extends Block<AvatarProps> {
+  modalService = ModalService.getInstance();
   constructor(props: AvatarProps) {
     const store = new Store();
     const avatarPath = Actions.getAvatarPath();
@@ -36,13 +36,7 @@ export class Avatar extends Block<AvatarProps> {
       hasAvatar: !!avatarPath,
       avatarPath: avatarPath,
     });
-    this.props?.btn?.setProps({
-      events: {
-        click: () => this.props?.changeAvatarModal?.show(),
-      },
-    });
-
-    store.on(EVENTS.UPDATE_PROFILE, () => this._updateAvatarProps());
+    this.initEvents();
   }
 
   render() {
@@ -57,4 +51,23 @@ export class Avatar extends Block<AvatarProps> {
       avatarPath: avatarPath,
     });
   }
+
+  initEvents() {
+    this.props.btn!.setProps({
+      events: {
+        click: () =>
+          this.modalService.openModal(
+            changeAvatarModal(this.props.value, this.onFileChange)
+          ),
+      },
+    });
+  }
+
+  onFileChange = ({ target }: InputEvent) => {
+    const value = (target as HTMLInputElement).value;
+
+    this.modalService.modal.setProps({
+      title: value ? "Файл загружен" : "Загрузите файл",
+    });
+  };
 }
