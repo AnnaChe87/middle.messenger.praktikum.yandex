@@ -4,7 +4,7 @@ export function getUserName(
   user: UserResponseContract,
   current: UserResponseContract
 ) {
-  if (!user || !current) return "";
+  if (!user) return "Пользователь удален";
   const { display_name, first_name, second_name, login } = user;
   if (login === current.login) {
     return "Вы";

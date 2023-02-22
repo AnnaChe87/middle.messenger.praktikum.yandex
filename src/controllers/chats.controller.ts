@@ -1,7 +1,9 @@
 import {
   ChatsRequestContract,
+  UserResponseContract,
   UsersChatRequestContract,
   chatsApi,
+  profileApi,
 } from "../api";
 import { Actions } from "../core";
 
@@ -33,8 +35,14 @@ class ChatsController {
     }
   }
 
-  async addUsers(data: UsersChatRequestContract) {
+  async addUsers(user: string) {
     try {
+      const { response: usersInfo } = await profileApi.findUserByLogin(user);
+
+      const data: UsersChatRequestContract = {
+        chatId: Actions.getCurrentChat()!.id,
+        users: usersInfo.map((item: UserResponseContract) => item.id),
+      };
       await chatsApi.addUsers(data);
       const { response: usersResponse } = await chatsApi.getUsers(data.chatId);
       Actions.updateCurrentChatUsers(usersResponse);
@@ -43,8 +51,13 @@ class ChatsController {
     }
   }
 
-  async deleteUsers(data: UsersChatRequestContract) {
+  async deleteUsers(user: string) {
     try {
+      const { response: usersInfo } = await profileApi.findUserByLogin(user);
+      const data: UsersChatRequestContract = {
+        chatId: Actions.getCurrentChat()!.id,
+        users: usersInfo.map((item: UserResponseContract) => item.id),
+      };
       await chatsApi.deleteUsers(data);
       const { response: usersResponse } = await chatsApi.getUsers(data.chatId);
       Actions.updateCurrentChatUsers(usersResponse);

@@ -1,8 +1,9 @@
+import { chatsController } from "../../controllers";
 import { Button } from "../button";
 import { Form, FormItem } from "../form";
 import { ModalProps } from "../modal";
 
-export function onAddUser(): ModalProps {
+export function onAddUser(onSubmit: () => void = () => {}): ModalProps {
   return {
     title: "Добавить пользователя",
     content: new Form({
@@ -11,11 +12,15 @@ export function onAddUser(): ModalProps {
         title: "Добавить",
         type: "submit",
       }),
+      handleSubmit: (data: { user: string }) => {
+        chatsController.addUsers(data.user);
+        onSubmit();
+      },
     }),
   };
 }
 
-export function onDeleteUser(): ModalProps {
+export function onDeleteUser(onSubmit: () => void = () => {}): ModalProps {
   return {
     title: "Удалить пользователя",
     content: new Form({
@@ -24,6 +29,10 @@ export function onDeleteUser(): ModalProps {
         title: "Удалить",
         type: "submit",
       }),
+      handleSubmit: (data: { user: string }) => {
+        chatsController.deleteUsers(data.user);
+        onSubmit();
+      },
     }),
   };
 }

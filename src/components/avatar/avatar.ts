@@ -5,7 +5,6 @@ import { changeAvatarModal } from "./avatar.utils";
 import template from "./avatar.hbs";
 
 import "./avatar.scss";
-import { profileController } from "../../controllers";
 
 /**
  * Контрол отображения/изменения аватара в профиле
@@ -14,29 +13,17 @@ export class Avatar extends Block<AvatarProps> {
   modalService = ModalService.getInstance();
   constructor(props: AvatarProps) {
     const store = new Store();
-    const avatarPath = Actions.getAvatarPath();
+
     super({
       ...props,
-      classname: !avatarPath ? ["without-avatar"] : [],
-      changeAvatarModal: new Modal({
-        title: "Загрузите файл",
-        content: new Form({
-          controls: [new FormItem({ type: "file", name: "avatar" })],
-          btn: new Button({
-            title: "Поменять",
-            type: "submit",
-          }),
-          handleSubmit: profileController.updateAvatar,
-        }),
-      }),
       btn: new Button({
         classname: ["overlay"],
         title: "Поменять аватар",
       }),
-      hasAvatar: !!avatarPath,
-      avatarPath: avatarPath,
     });
     this.initEvents();
+    this._updateAvatarProps();
+    store.on(EVENTS.UPDATE_PROFILE, () => this._updateAvatarProps());
   }
 
   render() {
@@ -57,7 +44,9 @@ export class Avatar extends Block<AvatarProps> {
       events: {
         click: () =>
           this.modalService.openModal(
-            changeAvatarModal(this.props.value, this.onFileChange)
+            changeAvatarModal(this.props.value, this.onFileChange, () =>
+              this.modalService.closeModal()
+            )
           ),
       },
     });

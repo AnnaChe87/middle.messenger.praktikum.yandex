@@ -33,14 +33,20 @@ export class Chat extends Block<ChatProps> {
               action: "add",
               title: "Добавить пользователя",
               events: {
-                click: () => this.modalService.openModal(onAddUser()),
+                click: () =>
+                  this.modalService.openModal(
+                    onAddUser(() => this.modalService.closeModal())
+                  ),
               },
             }),
             new MenuItem({
               action: "remove",
               title: "Удалить пользователя",
               events: {
-                click: () => this.modalService.openModal(onDeleteUser()),
+                click: () =>
+                  this.modalService.openModal(
+                    onDeleteUser(() => this.modalService.closeModal())
+                  ),
               },
             }),
           ],

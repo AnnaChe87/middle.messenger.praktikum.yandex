@@ -1,10 +1,12 @@
+import { profileController } from "../../controllers";
 import { Button } from "../button";
 import { Form, FormItem } from "../form";
 import { ModalProps } from "../modal";
 
 export function changeAvatarModal(
   value?: string,
-  onChange: (e: InputEvent) => void = () => {}
+  onChange: (e: InputEvent) => void = () => {},
+  onSubmit: () => void = () => {}
 ): ModalProps {
   return {
     title: "Загрузите файл",
@@ -25,6 +27,10 @@ export function changeAvatarModal(
         type: "submit",
         classname: ["change-avatar-modal"],
       }),
+      handleSubmit: (data: FormData) => {
+        profileController.updateAvatar(data);
+        onSubmit?.();
+      },
     }),
   };
 }

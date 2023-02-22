@@ -35,7 +35,7 @@ export class ChatsApi {
   _httpTransport: HTTPTransport;
 
   private readonly baseUrl = "/chats";
-  private readonly usersUrl = `${this.baseUrl}/user`;
+  private readonly usersUrl = `${this.baseUrl}/users`;
   private readonly tokenUrl = `${this.baseUrl}/token`;
 
   constructor() {

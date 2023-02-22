@@ -44,7 +44,7 @@ export class ProfileApi {
   }
 
   findUserByLogin(login: string) {
-    return this._httpTransport.get(this.findByLoginUrl, { data: { login } });
+    return this._httpTransport.post(this.findByLoginUrl, { data: { login } });
   }
 }
 

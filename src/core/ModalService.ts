@@ -22,4 +22,8 @@ export class ModalService {
     });
     this.modal.show();
   }
+
+  closeModal() {
+    this.modal.hide();
+  }
 }

@@ -16,7 +16,7 @@ class Profile extends Block<ProfileProps> {
       ...props,
       classname: ["profile"],
       displayName: Actions.getProfile()?.display_name,
-      avatar: new Avatar({}),
+      avatar: new Avatar({ value: Actions.getProfile()?.avatar }),
     });
   }
 
