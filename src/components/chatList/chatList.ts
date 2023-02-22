@@ -38,16 +38,4 @@ export class ChatList extends Block<Props> {
       ),
     });
   }
-
-  // filterChats(value?: string) {
-  //   const newChats =
-  //     value && value.length > 0
-  //       ? data.chats.filter((chat) => chat.title.indexOf(value) !== -1)
-  //       : data.chats;
-  //   this.setProps({
-  //     items: newChats.map(
-  //       (chat) => new ChatListItem(mapChatToChatListItemProps(chat))
-  //     ),
-  //   });
-  // }
 }
