@@ -1,4 +1,7 @@
 <div class="avatar">
+  {{#if hasAvatar}}
+    <img class="profile__avatar-img" src="{{avatarPath}}" />
+  {{/if}}
   {{{btn}}}
 </div>
 {{{changeAvatarModal}}}

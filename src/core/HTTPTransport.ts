@@ -81,7 +81,11 @@ export class HTTPTransport {
       xhr.responseType = "json";
 
       xhr.onload = function () {
-        resolve(xhr);
+        if (xhr.status === 200) {
+          resolve(xhr);
+        } else {
+          reject(xhr);
+        }
       };
 
       xhr.onabort = reject;
@@ -90,6 +94,8 @@ export class HTTPTransport {
 
       if (method === METHODS.GET && !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(data));

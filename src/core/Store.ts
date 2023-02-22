@@ -3,6 +3,7 @@ import { EventBus } from "./EventBus";
 
 export enum EVENTS {
   UPDATE = "UPDATE",
+  UPDATE_PROFILE = "UPDATE_PROFILE",
   UPDATE_CHATS = "UPDATE_CHATS",
   UPDATE_CURRENT_CHAT = "UPDATE_CURRENT_CHAT",
   UPDATE_MESSAGES = "UPDATE_MESSAGES",
@@ -15,17 +16,24 @@ export enum STORE_KEYS {
   MESSAGES = "messages",
 }
 
-type CurrentChatStore = {
+type CurrentChatStoreContract = {
   token: string;
   id: number;
   users: Record<number, UserResponseContract>;
 };
 
+export type MessageStoreContract = {
+  name: string;
+  time: string;
+  content: string;
+  isCurrent: boolean;
+};
+
 type StoreState = {
   [STORE_KEYS.CURRENT]: UserResponseContract | null;
   [STORE_KEYS.CHATS]: ChatResponseContract[];
-  [STORE_KEYS.CURRENT_CHAT]: CurrentChatStore | null;
-  [STORE_KEYS.MESSAGES]: any[];
+  [STORE_KEYS.CURRENT_CHAT]: CurrentChatStoreContract | null;
+  [STORE_KEYS.MESSAGES]: MessageStoreContract[];
 };
 
 const STATE_DEFAULT: StoreState = {

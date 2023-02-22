@@ -4,12 +4,14 @@
 .avatar {
   @include circle(130px, $color-gray-middle);
 
-  background-image: url("../../assets/icons/image.svg");
-  background-position: center;
-  background-repeat: no-repeat;
   cursor: pointer;
   position: relative;
 
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
   .overlay {
     display: none;
   }
@@ -26,5 +28,13 @@
       opacity: 0.8;
       color: $color-white;
     }
+  }
+}
+
+.without-avatar {
+  .avatar {
+    background-image: url("../../assets/icons/image.svg");
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }

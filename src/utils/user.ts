@@ -4,11 +4,12 @@ export function getUserName(
   user: UserResponseContract,
   current: UserResponseContract
 ) {
-  const { first_name, second_name, login } = user;
+  if (!user || !current) return "";
+  const { display_name, first_name, second_name, login } = user;
   if (login === current.login) {
     return "Вы";
   }
-  return `${first_name} ${second_name}`;
+  return display_name || `${first_name} ${second_name}`;
 }
 
 export function getUsersMap(users: UserResponseContract[]) {

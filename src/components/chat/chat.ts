@@ -54,7 +54,8 @@ export class Chat extends Block<ChatProps> {
           }),
         ],
         btn: new Button({ classname: ["icon-btn"], type: "submit" }),
-        handleSubmit: (data: FormDataType) => this._socket.message(data),
+        handleSubmit: (data: FormDataType) =>
+          this._socket.message(data.message),
       }),
     });
 

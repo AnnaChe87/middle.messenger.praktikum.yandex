@@ -67,7 +67,7 @@ export function getControls({
         classname: ["horizontal"],
         label: "Имя в чате",
         name: "display_name",
-        value: user?.display_name,
+        value: user?.display_name || "",
         disabled: !isEdit,
       }),
       new FormItem({

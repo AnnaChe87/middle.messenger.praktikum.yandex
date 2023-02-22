@@ -9,20 +9,32 @@ import { ROUTE_NAMES } from "../routing";
 
 class AuthController {
   async signup(data: SignupRequestContract) {
-    await authApi.signup(data);
-    router.go(ROUTE_NAMES.CHATS);
+    try {
+      await authApi.signup(data);
+      router.go(ROUTE_NAMES.CHATS);
+    } catch (e) {
+      console.error(e.response.reason);
+    }
   }
 
   async signin(data: SigninRequestContract) {
-    await authApi.signin(data);
-    const { response } = await authApi.getUserInfo();
-    Actions.setProfile(response);
-    router.go(ROUTE_NAMES.CHATS);
+    try {
+      await authApi.signin(data);
+      const { response } = await authApi.getUserInfo();
+      Actions.setProfile(response);
+      router.go(ROUTE_NAMES.CHATS);
+    } catch (e) {
+      console.error(e.response.reason);
+    }
   }
 
   async getUser() {
-    const { response } = await authApi.getUserInfo();
-    Actions.setProfile(response);
+    try {
+      const { response } = await authApi.getUserInfo();
+      Actions.setProfile(response);
+    } catch (e) {
+      console.error(e.response.reason);
+    }
   }
 
   async logout() {

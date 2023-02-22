@@ -1,5 +1,5 @@
 import { Block } from "../../core";
-import { ChatsProps } from "./chats.types";
+import { ChatsProps, FormDataType } from "./chats.types";
 import {
   Button,
   Chat,
@@ -36,8 +36,8 @@ class Chats extends Block<ChatsProps> {
         content: new Form({
           controls: [new FormItem({ name: "title", label: "Название чата" })],
           btn: new Button({ title: "Создать", type: "submit" }),
-          handleSubmit: ({ title }: { title: string }) =>
-            chatsController.createChat(title),
+          handleSubmit: (data: FormDataType) =>
+            chatsController.createChat(data.title),
         }),
       }),
       currentChat: new Chat({}),

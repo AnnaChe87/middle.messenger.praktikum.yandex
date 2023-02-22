@@ -26,12 +26,22 @@ export class Form extends Block<FormProps> {
     return this.compile(template, this.props);
   }
 
-  getValues() {
+  getValues(): FormData | Record<string, string> {
+    const avatarCtrl = this.getContent().querySelector(
+      "[name='avatar']"
+    ) as HTMLInputElement;
+    if (avatarCtrl && avatarCtrl.files) {
+      const formData: FormData = new FormData();
+      formData.append(avatarCtrl.name, avatarCtrl.files[0]);
+      return formData;
+    }
+
     const controls = this.getContent().querySelectorAll("[name]");
+
     const values: Record<string, string> = {};
-    controls.forEach(
-      (ctrl: HTMLInputElement) => (values[ctrl.name] = ctrl.value)
-    );
+    controls.forEach((ctrl: HTMLInputElement) => {
+      values[ctrl.name] = ctrl.value;
+    });
 
     return values;
   }

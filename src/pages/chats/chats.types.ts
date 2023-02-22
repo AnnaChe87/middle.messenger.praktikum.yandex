@@ -16,3 +16,7 @@ export type ChatsProps = Props & {
   btn?: Button;
   addChatModal?: Modal;
 };
+
+export type FormDataType = {
+  title: string;
+};

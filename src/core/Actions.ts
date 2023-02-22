@@ -15,6 +15,7 @@ const getProfile = () => {
 
 const setProfile = (user: UserResponseContract) => {
   store.setState(STORE_KEYS.CURRENT, user);
+  store.emit(EVENTS.UPDATE_PROFILE);
 };
 
 const setChats = (chats: ChatResponseContract) => {
@@ -39,6 +40,18 @@ const setCurrentChat = (
   store.setState(STORE_KEYS.MESSAGES, []);
   store.emit(EVENTS.UPDATE_CURRENT_CHAT);
   store.emit(EVENTS.UPDATE_MESSAGES);
+};
+
+const updateCurrentChatUsers = (users: UserResponseContract[]) => {
+  const state = store.getState();
+  const currentChat = state.currentChat;
+  if (!currentChat) return;
+
+  store.setState(STORE_KEYS.CURRENT_CHAT, {
+    ...currentChat,
+    users: getUsersMap(users),
+  });
+  store.emit(EVENTS.UPDATE_CURRENT_CHAT);
 };
 
 const getCurrentChat = () => {
@@ -79,6 +92,13 @@ const getMessages = () => {
   return store.getState().messages;
 };
 
+const getAvatarPath = () => {
+  const profile = getProfile();
+  if (!profile?.avatar) return null;
+
+  return `https://ya-praktikum.tech/api/v2/resources${profile.avatar}`;
+};
+
 export {
   clearState,
   getProfile,
@@ -90,4 +110,6 @@ export {
   getSocketInfo,
   setMessages,
   getMessages,
+  updateCurrentChatUsers,
+  getAvatarPath,
 };

@@ -7,35 +7,61 @@ import { Actions } from "../core";
 
 class ChatsController {
   async getChats(data?: ChatsRequestContract) {
-    const { response, status } = await chatsApi.getChats(data);
-    if (status === 200) {
+    try {
+      const { response } = await chatsApi.getChats(data);
       Actions.setChats(response);
+    } catch (e) {
+      console.error(e.response.reason);
     }
   }
 
   async createChat(title: string) {
-    await chatsApi.createChat(title);
-    this.getChats();
+    try {
+      await chatsApi.createChat(title);
+      this.getChats();
+    } catch (e) {
+      console.log(e.response.reason);
+    }
   }
 
   async deleteChat(id: number) {
-    await chatsApi.deleteChatById(id);
-    this.getChats();
+    try {
+      await chatsApi.deleteChatById(id);
+      this.getChats();
+    } catch (e) {
+      console.log(e.response.reason);
+    }
   }
 
   async addUsers(data: UsersChatRequestContract) {
-    await chatsApi.addUsers(data);
+    try {
+      await chatsApi.addUsers(data);
+      const { response: usersResponse } = await chatsApi.getUsers(data.chatId);
+      Actions.updateCurrentChatUsers(usersResponse);
+    } catch (e) {
+      console.log(e.response.reason);
+    }
   }
 
   async deleteUsers(data: UsersChatRequestContract) {
-    await chatsApi.deleteUsers(data);
+    try {
+      await chatsApi.deleteUsers(data);
+      const { response: usersResponse } = await chatsApi.getUsers(data.chatId);
+      Actions.updateCurrentChatUsers(usersResponse);
+    } catch (e) {
+      console.log(e.response.reason);
+    }
   }
 
   async getTokenByChatId(id: number) {
-    const { response } = await chatsApi.getTokenByChatId(id);
-    const { response: usersResponse } = await chatsApi.getUsers(id);
+    try {
+      const { response } = await chatsApi.getTokenByChatId(id);
+      const { response: usersResponse } = await chatsApi.getUsers(id);
 
-    Actions.setCurrentChat(id, response.token, usersResponse);
+      Actions.setCurrentChat(id, response.token, usersResponse);
+    } catch (e) {
+      console.log(e.response.reason);
+    }
   }
 }
 

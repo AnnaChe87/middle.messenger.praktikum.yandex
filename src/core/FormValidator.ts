@@ -63,6 +63,7 @@ export class FormValidator {
 
   isValidForm = (): boolean => {
     let isValid = true;
+
     Object.keys(this._formItems).forEach((key) => {
       if (!this.isValidFieldValue(key)) {
         isValid = false;
@@ -74,7 +75,7 @@ export class FormValidator {
   isValidFieldValue(fieldName: string): boolean {
     const { input, errors } = this._formItems[fieldName].props;
     const { regExp, error } = rules[fieldName] || {};
-    if (!regExp) {
+    if (!regExp || !errors) {
       return true;
     }
     const value = (input.getContent() as HTMLInputElement).value;
