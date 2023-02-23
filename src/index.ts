@@ -21,7 +21,7 @@ const unauthorizedGuard = () => {
 };
 
 export const router = new Router("#root")
-  .use(ROUTE_NAMES.BASE, Layout, { content: navigation })
+  .use(ROUTE_NAMES.BASE, Layout, { content: navigation }, unauthorizedGuard)
   .use(ROUTE_NAMES.LOGIN, Layout, { content: login })
   .use(ROUTE_NAMES.SIGNIN, Layout, { content: signin })
   .use(ROUTE_NAMES.CHATS, Layout, { content: chats }, unauthorizedGuard)
