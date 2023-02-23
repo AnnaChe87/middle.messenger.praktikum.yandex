@@ -1,24 +1,19 @@
-import { Block } from "../../core";
-import { ChatsProps, FormDataType } from "./chats.types";
-import {
-  Button,
-  Chat,
-  ChatList,
-  Form,
-  FormItem,
-  Link,
-  Modal,
-} from "../../components";
+import { Block, ModalService } from "../../core";
+import { ChatsProps } from "./chats.types";
+import { Button, Chat, ChatList, FormItem, Link } from "../../components";
+import { chatsController } from "../../controllers";
+import { DEFAULT_CHATS_PARAMS } from "../../api";
+import { onAddChat } from "./chats.utils";
 import template from "./chats.hbs";
 
 import "./chats.scss";
-import { chatsController } from "../../controllers/chats.controller";
-import { DEFAULT_CHATS_PARAMS } from "../../api";
 
 /**
  * Список чатов и лента переписки
  */
 class Chats extends Block<ChatsProps> {
+  modalService: ModalService = ModalService.getInstance();
+
   constructor(props: ChatsProps) {
     super({
       ...props,
@@ -30,15 +25,14 @@ class Chats extends Block<ChatsProps> {
         classname: ["single", "chats-navigation-search"],
         placeholder: "Поиск",
       }),
-      btn: new Button({ classname: ["icon-btn"] }),
-      addChatModal: new Modal({
-        title: "Создание чата",
-        content: new Form({
-          controls: [new FormItem({ name: "title", label: "Название чата" })],
-          btn: new Button({ title: "Создать", type: "submit" }),
-          handleSubmit: (data: FormDataType) =>
-            chatsController.createChat(data.title),
-        }),
+      btn: new Button({
+        classname: ["icon-btn"],
+        events: {
+          click: () =>
+            this.modalService.openModal(
+              onAddChat(() => this.modalService.closeModal())
+            ),
+        },
       }),
       currentChat: new Chat({}),
       chatList: new ChatList({}),
@@ -55,12 +49,6 @@ class Chats extends Block<ChatsProps> {
             title: (e.target as HTMLInputElement).value,
           });
         },
-      },
-    });
-
-    this.props.btn!.setProps({
-      events: {
-        click: () => this.props.addChatModal!.show(),
       },
     });
   }

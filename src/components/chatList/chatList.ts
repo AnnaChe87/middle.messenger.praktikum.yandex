@@ -1,11 +1,11 @@
 import { Actions, Block } from "../../core";
 import { ChatListItem, mapChatToChatListItemProps } from "./components";
+import { EVENTS, Store } from "../../core/Store";
+import { chatsController } from "../../controllers";
+import { Props } from "../../index.types";
 import template from "./chatList.hbs";
 
 import "./chatList.scss";
-import { EVENTS, Store } from "../../core/Store";
-import { chatsController } from "../../controllers/chats.controller";
-import { Props } from "../../index.types";
 
 /**
  * Список чатов

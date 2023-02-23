@@ -1,10 +1,10 @@
 import { Block } from "../../core";
 import { Button, Form, FormItem, Link } from "../../components";
 import { EntryProps } from "./entry.types";
+import { authController } from "../../controllers";
 import template from "./entry.hbs";
 
 import "./entry.scss";
-import { authController } from "../../controllers/auth.controller";
 
 /**
  * Авторизация/регистрация
