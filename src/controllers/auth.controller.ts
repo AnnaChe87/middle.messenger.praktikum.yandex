@@ -14,6 +14,7 @@ class AuthController {
       await authApi.signup(data);
       const { response } = await authApi.getUserInfo();
       Actions.setProfile(response);
+      await chatsController.getChats();
       router.go(ROUTE_NAMES.BASE);
     } catch (e) {
       console.error(e.response.reason);
@@ -25,6 +26,7 @@ class AuthController {
       await authApi.signin(data);
       const { response } = await authApi.getUserInfo();
       Actions.setProfile(response);
+      await chatsController.getChats();
       router.go(ROUTE_NAMES.BASE);
     } catch (e) {
       console.error(e.response.reason);
@@ -35,7 +37,7 @@ class AuthController {
     try {
       const { response } = await authApi.getUserInfo();
       Actions.setProfile(response);
-      chatsController.getChats();
+      await chatsController.getChats();
       router.go(ROUTE_NAMES.BASE);
     } catch (e) {
       console.error(e.response.reason);
