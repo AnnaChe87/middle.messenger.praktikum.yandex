@@ -2,10 +2,9 @@ import { Block } from "../../core";
 import { Link } from "../link";
 import { LayoutProps } from "./layout.types";
 import template from "./layout.hbs";
-
-import "./layout.scss";
 import { ModalService } from "../../core/ModalService";
 import { ROUTE_NAMES } from "../../routing";
+import "./layout.scss";
 
 /**
  * Общий слой для всех страниц
@@ -15,7 +14,7 @@ export class Layout extends Block<LayoutProps> {
     super({
       ...props,
       classname: [...(props.classname || []), "container"],
-      link: new Link({ href: ROUTE_NAMES.BASE, title: "На главную" }),
+      link: new Link({ href: ROUTE_NAMES.BASE, title: "К чатикам" }),
       modal: ModalService.getInstance().modal,
     });
   }

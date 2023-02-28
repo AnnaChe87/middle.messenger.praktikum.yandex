@@ -5,7 +5,6 @@ import {
   error404,
   error500,
   login,
-  navigation,
   profile,
   profileEdit,
   profilePass,
@@ -21,10 +20,9 @@ const unauthorizedGuard = () => {
 };
 
 export const router = new Router("#root")
-  .use(ROUTE_NAMES.BASE, Layout, { content: navigation }, unauthorizedGuard)
+  .use(ROUTE_NAMES.BASE, Layout, { content: chats }, unauthorizedGuard)
   .use(ROUTE_NAMES.LOGIN, Layout, { content: login })
   .use(ROUTE_NAMES.SIGNIN, Layout, { content: signin })
-  .use(ROUTE_NAMES.CHATS, Layout, { content: chats }, unauthorizedGuard)
   .use(ROUTE_NAMES.ERROR404, Layout, { content: error404 })
   .use(ROUTE_NAMES.ERROR500, Layout, { content: error500 })
   .use(ROUTE_NAMES.PROFILE, Layout, { content: profile }, unauthorizedGuard)

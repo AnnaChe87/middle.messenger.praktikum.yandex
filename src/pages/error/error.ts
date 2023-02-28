@@ -4,6 +4,7 @@ import { ErrorProps } from "./error.types";
 import template from "./error.hbs";
 
 import "./error.scss";
+import { ROUTE_NAMES } from "../../routing";
 
 /**
  * Ошибка
@@ -11,7 +12,7 @@ import "./error.scss";
 class Error extends Block<ErrorProps> {
   constructor(props: ErrorProps) {
     props.classname = ["error", "column"];
-    props.link = new Link({ href: "/chats", title: "Назад к чатам" });
+    props.link = new Link({ href: ROUTE_NAMES.BASE, title: "Назад к чатам" });
     super(props);
   }
 
