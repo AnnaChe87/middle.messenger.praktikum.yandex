@@ -11,6 +11,8 @@ class AuthController {
   async signup(data: SignupRequestContract) {
     try {
       await authApi.signup(data);
+      const { response } = await authApi.getUserInfo();
+      Actions.setProfile(response);
       router.go(ROUTE_NAMES.CHATS);
     } catch (e) {
       console.error(e.response.reason);

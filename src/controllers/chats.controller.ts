@@ -9,6 +9,8 @@ import { Actions } from "../core";
 
 class ChatsController {
   async getChats(data?: ChatsRequestContract) {
+    if (!Actions.getProfile()?.id) return;
+
     try {
       const { response } = await chatsApi.getChats(data);
       Actions.setChats(response);
