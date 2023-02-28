@@ -1,8 +1,10 @@
-import { Block } from "../../core";
+import { Actions, Block, EVENTS, Store } from "../../core";
 import { Button, Form, FormItem, Link } from "../../components";
 import { EntryProps } from "./entry.types";
-import { authController } from "../../controllers";
+import { authController, chatsController } from "../../controllers";
 import template from "./entry.hbs";
+import { router } from "../..";
+import { ROUTE_NAMES } from "../../routing";
 
 import "./entry.scss";
 
@@ -11,8 +13,19 @@ import "./entry.scss";
  */
 export class Entry extends Block<EntryProps> {
   constructor(props: EntryProps) {
+    const store = new Store();
+
+    if (!Actions.getProfile()?.id) {
+      authController.getUser();
+    }
+
     props.classname = ["entry"];
     super(props);
+
+    store.on(EVENTS.UPDATE_PROFILE, () => {
+      chatsController.getChats();
+      router.go(ROUTE_NAMES.CHATS);
+    });
   }
 
   render() {
