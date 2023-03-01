@@ -58,23 +58,13 @@ export class Store extends EventBus<EVENTS> {
 
     const savedState = localStorage.getItem(Store.STORE_NAME);
 
-    let data: StoreState = STATE_DEFAULT;
+    this._state = savedState ? JSON.parse(savedState) ?? {} : STATE_DEFAULT;
 
-    try {
-      data = savedState ? JSON.parse(savedState) ?? {} : STATE_DEFAULT;
-    } catch (e) {
-      console.log(
-        `При попытке использовать сохраненные данные произошла ошибка ${e}`
-      );
-    } finally {
-      this._state = data;
+    Store._instance = this;
 
-      Store._instance = this;
-
-      this.on(EVENTS.UPDATE, () => {
-        localStorage.setItem(Store.STORE_NAME, JSON.stringify(this._state));
-      });
-    }
+    this.on(EVENTS.UPDATE, () => {
+      localStorage.setItem(Store.STORE_NAME, JSON.stringify(this._state));
+    });
   }
 
   getState(): StoreState {

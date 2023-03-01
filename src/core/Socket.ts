@@ -46,19 +46,21 @@ export class Socket {
     });
 
     this.socket?.addEventListener("message", (event) => {
+      let data = {} as SocketMessageContract;
       try {
-        const data = JSON.parse(event.data) as SocketMessageContract;
-        if (data.type === "user connected") return;
-
-        const messages = Array.isArray(data) ? data : [data];
-        messages.sort(
-          (left, right) =>
-            new Date(left.time).getTime() - new Date(right.time).getTime()
-        );
-
-        Actions.setMessages(messages);
+        data = JSON.parse(event.data) as SocketMessageContract;
       } catch (e) {
         console.error(`При парсинге данных произошла ошибка ${e}`);
+      } finally {
+        if (data.type !== "user connected") {
+          const messages = Array.isArray(data) ? data : [data];
+          messages.sort(
+            (left, right) =>
+              new Date(left.time).getTime() - new Date(right.time).getTime()
+          );
+
+          Actions.setMessages(messages);
+        }
       }
     });
   }
