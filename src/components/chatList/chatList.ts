@@ -1,7 +1,8 @@
-import { Block } from "../../core";
-import { data } from "../../mock";
-import { ChatListProps } from "./chatList.types";
+import { Actions, Block } from "../../core";
 import { ChatListItem, mapChatToChatListItemProps } from "./components";
+import { EVENTS, Store } from "../../core/Store";
+import { chatsController } from "../../controllers";
+import { Props } from "../../index.types";
 import template from "./chatList.hbs";
 
 import "./chatList.scss";
@@ -9,43 +10,33 @@ import "./chatList.scss";
 /**
  * Список чатов
  */
-export class ChatList extends Block<ChatListProps> {
-  constructor(props: ChatListProps) {
+export class ChatList extends Block<Props> {
+  constructor(props: Props) {
+    chatsController.getChats();
+
     props.classname = ["chat-list"];
     super(props);
-    this.initEvents();
+
+    Store._instance.on(EVENTS.UPDATE_CHATS, () => this._updateItems());
   }
 
   render() {
     return this.compile(template, this.props);
   }
 
-  initEvents() {
-    this.props.items.forEach((chat: ChatListItem) =>
-      chat.setProps({ events: { click: () => this.selectChat(chat.props.id) } })
-    );
-  }
-
-  filterChats(value?: string) {
-    const newChats =
-      value && value.length > 0
-        ? data.chats.filter((chat) => chat.title.indexOf(value) !== -1)
-        : data.chats;
+  _updateItems() {
     this.setProps({
-      items: newChats.map(
-        (chat) => new ChatListItem(mapChatToChatListItemProps(chat))
+      items: Actions.getChats().map(
+        (chat) =>
+          new ChatListItem({
+            ...mapChatToChatListItemProps(chat),
+            events: {
+              click: () => {
+                chatsController.getTokenByChat(chat);
+              },
+            },
+          })
       ),
-    });
-  }
-
-  selectChat(id: number) {
-    this.props.items.forEach((chat: ChatListItem) => {
-      if (chat.props.id !== id) {
-        chat.deselect();
-      }
-      if (chat.props.id === id) {
-        chat.select();
-      }
     });
   }
 }

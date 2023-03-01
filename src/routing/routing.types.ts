@@ -1,15 +1,15 @@
 import { Block } from "../core";
+import { Props } from "../index.types";
 
-export enum RouteNames {
+export enum ROUTE_NAMES {
   BASE = "/",
-  LOGIN = "/login",
-  SIGNIN = "/signin",
+  SIGNUP = "/sign-up",
+  MESSENGER = "/messenger",
   ERROR404 = "/404",
   ERROR500 = "/500",
-  CHATS = "/chats",
-  PROFILE = "/profile",
+  SETTINGS = "/settings",
   PROFILE_EDIT = "/profile-edit",
   PROFILE_PASS = "/profile-pass",
 }
 
-export type Route = Block;
+export type Route = Block<Props>;

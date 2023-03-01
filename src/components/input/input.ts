@@ -14,7 +14,7 @@ export class Input extends Block<InputProps> {
   _addAttributes(): void {
     super._addAttributes();
     Object.entries(this.props).forEach(([key, value]) => {
-      if (["type", "name", "placeholder", "value"].includes(key)) {
+      if (["type", "name", "placeholder", "value", "accept"].includes(key)) {
         this.element.setAttribute(key, value);
       }
       if (key === "disabled" && value) {

@@ -2,7 +2,15 @@
   <div class="chats-navigation-profile">
     {{{link}}}
   </div>
-  {{{search}}}
+  <div class="chats-actions">
+    {{{search}}}
+    {{{btn}}}
+  </div>
   {{{chatList}}}
 </div>
-{{{currentChat}}}
+{{#if currentChat}}
+  {{{currentChat}}}
+
+{{else}}
+  <div class="chats-empty-chat">Выберите чатик</div>
+{{/if}}

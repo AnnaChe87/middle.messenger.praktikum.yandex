@@ -5,4 +5,5 @@ import { FormItem } from "./components";
 export type FormProps = Props & {
   controls: FormItem[];
   btn?: Button;
+  handleSubmit?: (data: FormData | Record<string, string>) => void;
 };

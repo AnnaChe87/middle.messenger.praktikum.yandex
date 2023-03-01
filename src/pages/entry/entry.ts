@@ -1,15 +1,21 @@
-import { Block } from "../../core";
+import { Actions, Block } from "../../core";
 import { Button, Form, FormItem, Link } from "../../components";
 import { EntryProps } from "./entry.types";
+import { authController } from "../../controllers";
 import template from "./entry.hbs";
 
 import "./entry.scss";
+import { ROUTE_NAMES } from "../../routing";
 
 /**
  * Авторизация/регистрация
  */
-class Entry extends Block<EntryProps> {
+export class Entry extends Block<EntryProps> {
   constructor(props: EntryProps) {
+    if (!Actions.getProfile()?.id) {
+      authController.getUser();
+    }
+
     props.classname = ["entry"];
     super(props);
   }
@@ -36,8 +42,9 @@ export const signin = new Entry({
       new FormItem({ label: "Телефон", name: "phone" }),
     ],
     btn: new Button({ title: "Зарегистрироваться", type: "submit" }),
+    handleSubmit: authController.signup,
   }),
-  link: new Link({ href: "#/login", title: "Войти" }),
+  link: new Link({ href: ROUTE_NAMES.BASE, title: "Войти" }),
 });
 
 export const login = new Entry({
@@ -51,6 +58,7 @@ export const login = new Entry({
       title: "Войти",
       type: "submit",
     }),
+    handleSubmit: authController.signin,
   }),
-  link: new Link({ href: "#/signin", title: "Нет аккаунта?" }),
+  link: new Link({ href: ROUTE_NAMES.SIGNUP, title: "Нет аккаунта?" }),
 });

@@ -1,4 +1,7 @@
 <div class="chat-list-item-avatar">
+  {{#if hasAvatar}}
+    <img src="{{avatar}}" />
+  {{/if}}
 </div>
 <div class="chat-list-item-info-message column">
   <h4>{{title}}</h4>
@@ -7,7 +10,7 @@
 <div class="chat-list-item-info-time column">
   <small class="time">{{formattedTime}}</small>
   <div class="count-container">
-    {{#if hasUnread}}
+    {{#if unreadCount}}
       <div class="count">{{{unreadCount}}}</div>
     {{/if}}
   </div>

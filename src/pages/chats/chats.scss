@@ -22,9 +22,30 @@
     }
   }
 
-  &-chat {
+  &-actions {
+    display: flex;
+
+    > :first-child {
+      flex-grow: 1;
+    }
+
+    .icon-btn {
+      background-image: url("../../assets/icons/add.svg");
+      background-color: $color-blue;
+      margin-right: 10px;
+    }
+  }
+
+  &-chat,
+  &-empty-chat {
     flex: 4;
     justify-content: space-around;
     height: 100%;
+  }
+
+  &-empty-chat {
+    display: flex;
+    align-items: center;
+    color: $color-gray-dark;
   }
 }

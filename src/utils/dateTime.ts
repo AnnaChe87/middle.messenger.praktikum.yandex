@@ -12,7 +12,9 @@ function dayName(number: number) {
   return days[number];
 }
 
-export function getTime(dateStr: string): string {
+export function getTime(dateStr?: string): string {
+  if (!dateStr) return "";
+
   const date = new Date(dateStr);
   const today = new Date();
   today.setHours(0, 0, 0);

@@ -2,7 +2,8 @@ import { Block } from "../../core";
 import { Link } from "../link";
 import { LayoutProps } from "./layout.types";
 import template from "./layout.hbs";
-
+import { ModalService } from "../../core/ModalService";
+import { ROUTE_NAMES } from "../../routing";
 import "./layout.scss";
 
 /**
@@ -10,9 +11,12 @@ import "./layout.scss";
  */
 export class Layout extends Block<LayoutProps> {
   constructor(props: LayoutProps) {
-    props.classname = ["container"];
-    props.link = new Link({ href: "#", title: "На главную" });
-    super(props);
+    super({
+      ...props,
+      classname: [...(props.classname || []), "container"],
+      link: new Link({ href: ROUTE_NAMES.MESSENGER, title: "К чатикам" }),
+      modal: ModalService.getInstance().modal,
+    });
   }
 
   render() {

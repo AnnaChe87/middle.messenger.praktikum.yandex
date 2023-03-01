@@ -1,9 +1,10 @@
-import { Block } from "../../core";
+import { Actions, Block } from "../../core";
 import { Avatar, Button, Form, Link } from "../../components";
-import { data } from "../../mock";
 import { getControls } from "./profile.utils";
 import { ProfileProps } from "./profile.types";
 import template from "./profile.hbs";
+import { authController, profileController } from "../../controllers";
+import { ROUTE_NAMES } from "../../routing";
 
 import "./profile.scss";
 
@@ -15,8 +16,8 @@ class Profile extends Block<ProfileProps> {
     super({
       ...props,
       classname: ["profile"],
-      displayName: data.currentUser.display_name,
-      avatar: new Avatar({}),
+      displayName: Actions.getProfile()?.display_name,
+      avatar: new Avatar({ value: Actions.getProfile()?.avatar }),
     });
   }
 
@@ -27,25 +28,40 @@ class Profile extends Block<ProfileProps> {
 
 export const profile = new Profile({
   links: [
-    new Link({ href: "#/profile-edit", title: "Изменить данные" }),
-    new Link({ href: "#/profile-pass", title: "Изменить пароль" }),
-    new Link({ href: "#", title: "Выйти", color: "red" }),
+    new Link({ href: ROUTE_NAMES.PROFILE_EDIT, title: "Изменить данные" }),
+    new Link({ href: ROUTE_NAMES.PROFILE_PASS, title: "Изменить пароль" }),
+    new Link({
+      href: "#",
+      title: "Выйти",
+      color: "red",
+      events: {
+        click: (e) => {
+          e?.preventDefault();
+          authController.logout();
+        },
+      },
+    }),
   ],
   form: new Form({
-    controls: getControls(),
+    controls: getControls({ user: Actions.getProfile() }),
   }),
 });
 
 export const profileEdit = new Profile({
   form: new Form({
-    controls: getControls(true),
+    controls: getControls({ isEdit: true, user: Actions.getProfile() }),
     btn: new Button({ title: "Сохранить", type: "submit" }),
+    handleSubmit: profileController.updateProfile,
   }),
 });
 
 export const profilePass = new Profile({
   form: new Form({
-    controls: getControls(true, true),
+    controls: getControls({
+      isEdit: true,
+      isPassword: true,
+    }),
     btn: new Button({ title: "Сохранить", type: "submit" }),
+    handleSubmit: profileController.updatePassword,
   }),
 });
