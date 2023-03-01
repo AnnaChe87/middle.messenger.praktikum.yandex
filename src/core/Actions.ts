@@ -1,7 +1,7 @@
 import { ChatResponseContract, UserResponseContract } from "../api";
-import { getTime, getUserName, getUsersMap } from "../utils";
+import { getTime, getUserName } from "../utils";
 import { SocketMessageContract } from "./Socket";
-import { EVENTS, STORE_KEYS, Store } from "./Store";
+import { EVENTS, STORE_KEYS, Store, CurrentChatStoreContract } from "./Store";
 
 const store = new Store();
 
@@ -27,29 +27,27 @@ const getChats = () => {
   return store.getState().chats;
 };
 
-const setCurrentChat = (
-  id: number,
-  token: string,
-  users: UserResponseContract[]
-) => {
+const setCurrentChat = (data: Partial<CurrentChatStoreContract>) => {
+  const { current } = store.getState();
+  if (!current) return;
+
   store.setState(STORE_KEYS.CURRENT_CHAT, {
-    id,
-    token,
-    users: getUsersMap(users),
+    ...data,
+    isCurrent: data.created_by === current.id,
   });
   store.setState(STORE_KEYS.MESSAGES, []);
   store.emit(EVENTS.UPDATE_CURRENT_CHAT);
   store.emit(EVENTS.UPDATE_MESSAGES);
 };
 
-const updateCurrentChatUsers = (users: UserResponseContract[]) => {
+const updateCurrentChat = (data: Partial<CurrentChatStoreContract>) => {
   const state = store.getState();
   const currentChat = state.currentChat;
   if (!currentChat) return;
 
   store.setState(STORE_KEYS.CURRENT_CHAT, {
     ...currentChat,
-    users: getUsersMap(users),
+    ...data,
   });
   store.emit(EVENTS.UPDATE_CURRENT_CHAT);
 };
@@ -110,6 +108,6 @@ export {
   getSocketInfo,
   setMessages,
   getMessages,
-  updateCurrentChatUsers,
+  updateCurrentChat,
   getAvatarPath,
 };

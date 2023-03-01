@@ -8,7 +8,7 @@ import { Menu, MenuItem } from "../menu";
 import { EVENTS, Store } from "../../core/Store";
 import { Socket } from "../../core/Socket";
 import { Message } from "./components";
-import { onAddUser, onDeleteUser } from "./chat.utils";
+import { onAddUser, onDeleteChat, onDeleteUser } from "./chat.utils";
 import template from "./chat.hbs";
 
 import "./chat.scss";
@@ -21,7 +21,6 @@ export class Chat extends Block<ChatProps> {
 
   modalService: ModalService = ModalService.getInstance();
   constructor(props: ChatProps) {
-    const store = new Store();
     super({
       ...props,
       classname: ["chat", "column", ...(props.classname || [])],
@@ -46,6 +45,16 @@ export class Chat extends Block<ChatProps> {
                 click: () =>
                   this.modalService.openModal(
                     onDeleteUser(() => this.modalService.closeModal())
+                  ),
+              },
+            }),
+            new MenuItem({
+              action: "remove",
+              title: "Удалить чат",
+              events: {
+                click: () =>
+                  this.modalService.openModal(
+                    onDeleteChat(() => this.modalService.closeModal())
                   ),
               },
             }),
@@ -79,8 +88,8 @@ export class Chat extends Block<ChatProps> {
       }),
     });
 
-    store.on(EVENTS.UPDATE_CURRENT_CHAT, () => this._initSocket());
-    store.on(EVENTS.UPDATE_MESSAGES, () =>
+    this._initSocket();
+    Store._instance.on(EVENTS.UPDATE_MESSAGES, () =>
       this.setProps({
         messages: Actions.getMessages().map((props) => new Message(props)),
       })
@@ -93,6 +102,26 @@ export class Chat extends Block<ChatProps> {
 
     const { token, userId, chatId } = socketInfo;
     this._socket = new Socket(userId, chatId, token);
+
+    this._updateCurrentChat();
+  }
+
+  _updateCurrentChat() {
+    const chat = Actions.getCurrentChat();
+    if (!chat) {
+      this.setProps({
+        isCurrent: false,
+      });
+      return;
+    }
+
+    const { title, avatar, isCurrent } = chat;
+    this.setProps({
+      isCurrent: isCurrent,
+      title,
+      avatar,
+      hasAvatar: !!avatar,
+    });
   }
 
   render() {

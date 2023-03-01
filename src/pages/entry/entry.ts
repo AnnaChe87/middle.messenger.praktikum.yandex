@@ -5,6 +5,7 @@ import { authController } from "../../controllers";
 import template from "./entry.hbs";
 
 import "./entry.scss";
+import { ROUTE_NAMES } from "../../routing";
 
 /**
  * Авторизация/регистрация
@@ -43,7 +44,7 @@ export const signin = new Entry({
     btn: new Button({ title: "Зарегистрироваться", type: "submit" }),
     handleSubmit: authController.signup,
   }),
-  link: new Link({ href: "/login", title: "Войти" }),
+  link: new Link({ href: ROUTE_NAMES.BASE, title: "Войти" }),
 });
 
 export const login = new Entry({
@@ -59,5 +60,5 @@ export const login = new Entry({
     }),
     handleSubmit: authController.signin,
   }),
-  link: new Link({ href: "/signin", title: "Нет аккаунта?" }),
+  link: new Link({ href: ROUTE_NAMES.SIGNUP, title: "Нет аккаунта?" }),
 });

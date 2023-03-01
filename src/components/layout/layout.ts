@@ -14,7 +14,7 @@ export class Layout extends Block<LayoutProps> {
     super({
       ...props,
       classname: [...(props.classname || []), "container"],
-      link: new Link({ href: ROUTE_NAMES.BASE, title: "К чатикам" }),
+      link: new Link({ href: ROUTE_NAMES.MESSENGER, title: "К чатикам" }),
       modal: ModalService.getInstance().modal,
     });
   }

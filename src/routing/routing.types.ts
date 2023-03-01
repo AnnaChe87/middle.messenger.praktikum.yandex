@@ -3,11 +3,11 @@ import { Props } from "../index.types";
 
 export enum ROUTE_NAMES {
   BASE = "/",
-  LOGIN = "/login",
-  SIGNIN = "/signin",
+  SIGNUP = "/sign-up",
+  MESSENGER = "/messenger",
   ERROR404 = "/404",
   ERROR500 = "/500",
-  PROFILE = "/profile",
+  SETTINGS = "/settings",
   PROFILE_EDIT = "/profile-edit",
   PROFILE_PASS = "/profile-pass",
 }

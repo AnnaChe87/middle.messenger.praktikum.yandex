@@ -10,12 +10,11 @@ import "./chatListItem.scss";
  */
 export class ChatListItem extends Block<ChatListItemProps> {
   constructor(props: ChatListItemProps) {
-    const store = new Store();
-
     props.classname = ["chat-list-item"];
+    props.hasAvatar = !!props.avatar;
     super(props);
 
-    store.on(EVENTS.UPDATE_CURRENT_CHAT, () => this.toggleSelect());
+    Store._instance.on(EVENTS.UPDATE_CURRENT_CHAT, () => this.toggleSelect());
   }
 
   render() {

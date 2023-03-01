@@ -36,3 +36,21 @@ export function onDeleteUser(onSubmit: () => void = () => {}): ModalProps {
     }),
   };
 }
+
+export function onDeleteChat(onSubmit: () => void = () => {}): ModalProps {
+  return {
+    title: "Удалить чат?",
+    content: new Form({
+      controls: [],
+      btn: new Button({
+        title: "Удалить",
+        type: "submit",
+      }),
+      handleSubmit: () => {
+        console.log("1");
+        chatsController.deleteChat();
+        onSubmit();
+      },
+    }),
+  };
+}

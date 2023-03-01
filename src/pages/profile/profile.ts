@@ -4,6 +4,7 @@ import { getControls } from "./profile.utils";
 import { ProfileProps } from "./profile.types";
 import template from "./profile.hbs";
 import { authController, profileController } from "../../controllers";
+import { ROUTE_NAMES } from "../../routing";
 
 import "./profile.scss";
 
@@ -27,8 +28,8 @@ class Profile extends Block<ProfileProps> {
 
 export const profile = new Profile({
   links: [
-    new Link({ href: "/profile-edit", title: "Изменить данные" }),
-    new Link({ href: "/profile-pass", title: "Изменить пароль" }),
+    new Link({ href: ROUTE_NAMES.PROFILE_EDIT, title: "Изменить данные" }),
+    new Link({ href: ROUTE_NAMES.PROFILE_PASS, title: "Изменить пароль" }),
     new Link({
       href: "#",
       title: "Выйти",

@@ -6,6 +6,9 @@ import { Message } from "./components";
 
 export type ChatProps = Props & {
   title?: string;
+  hasAvatar?: boolean;
+  avatar?: string;
+  isCurrent?: boolean;
   messages?: Message[];
   attach?: Button;
   input?: FormItem;

@@ -8,4 +8,6 @@ export type ChatListItemProps = Props & {
   lastMessage: LastMessageResponseContract;
   formattedTime: string;
   hasUnread?: boolean;
+  avatar?: string;
+  hasAvatar?: boolean;
 };

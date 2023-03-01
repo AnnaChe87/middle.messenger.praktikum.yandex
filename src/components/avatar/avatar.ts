@@ -12,8 +12,6 @@ import "./avatar.scss";
 export class Avatar extends Block<AvatarProps> {
   modalService = ModalService.getInstance();
   constructor(props: AvatarProps) {
-    const store = new Store();
-
     super({
       ...props,
       btn: new Button({
@@ -23,7 +21,7 @@ export class Avatar extends Block<AvatarProps> {
     });
     this.initEvents();
     this._updateAvatarProps();
-    store.on(EVENTS.UPDATE_PROFILE, () => this._updateAvatarProps());
+    Store._instance.on(EVENTS.UPDATE_PROFILE, () => this._updateAvatarProps());
   }
 
   render() {

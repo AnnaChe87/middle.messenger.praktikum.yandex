@@ -1,4 +1,4 @@
-import { Block, ModalService } from "../../core";
+import { Block, EVENTS, ModalService, Store } from "../../core";
 import { ChatsProps } from "./chats.types";
 import { Button, Chat, ChatList, FormItem, Link } from "../../components";
 import { chatsController } from "../../controllers";
@@ -7,6 +7,7 @@ import { onAddChat } from "./chats.utils";
 import template from "./chats.hbs";
 
 import "./chats.scss";
+import { ROUTE_NAMES } from "../../routing";
 
 /**
  * Список чатов и лента переписки
@@ -18,7 +19,7 @@ class Chats extends Block<ChatsProps> {
     super({
       ...props,
       classname: ["chats"],
-      link: new Link({ href: "/profile", title: "Профиль" }),
+      link: new Link({ href: ROUTE_NAMES.SETTINGS, title: "Профиль" }),
       search: new FormItem({
         name: "message",
         type: "search",
@@ -34,9 +35,12 @@ class Chats extends Block<ChatsProps> {
             ),
         },
       }),
-      currentChat: new Chat({}),
       chatList: new ChatList({}),
     });
+
+    Store._instance.on(EVENTS.UPDATE_CURRENT_CHAT, () =>
+      this.setProps({ currentChat: new Chat({}) })
+    );
     this.initEvents();
   }
 

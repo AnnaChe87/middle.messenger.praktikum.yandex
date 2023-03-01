@@ -36,9 +36,16 @@
     }
   }
 
-  &-chat {
+  &-chat,
+  &-empty-chat {
     flex: 4;
     justify-content: space-around;
     height: 100%;
+  }
+
+  &-empty-chat {
+    display: flex;
+    align-items: center;
+    color: $color-gray-dark;
   }
 }

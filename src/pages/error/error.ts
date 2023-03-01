@@ -12,7 +12,10 @@ import { ROUTE_NAMES } from "../../routing";
 class Error extends Block<ErrorProps> {
   constructor(props: ErrorProps) {
     props.classname = ["error", "column"];
-    props.link = new Link({ href: ROUTE_NAMES.BASE, title: "Назад к чатам" });
+    props.link = new Link({
+      href: ROUTE_NAMES.MESSENGER,
+      title: "Назад к чатам",
+    });
     super(props);
   }
 

@@ -12,13 +12,12 @@ import "./chatList.scss";
  */
 export class ChatList extends Block<Props> {
   constructor(props: Props) {
-    const store = new Store();
     chatsController.getChats();
 
     props.classname = ["chat-list"];
     super(props);
 
-    store.on(EVENTS.UPDATE_CHATS, () => this._updateItems());
+    Store._instance.on(EVENTS.UPDATE_CHATS, () => this._updateItems());
   }
 
   render() {
@@ -32,7 +31,9 @@ export class ChatList extends Block<Props> {
           new ChatListItem({
             ...mapChatToChatListItemProps(chat),
             events: {
-              click: () => chatsController.getTokenByChatId(chat.id),
+              click: () => {
+                chatsController.getTokenByChat(chat);
+              },
             },
           })
       ),

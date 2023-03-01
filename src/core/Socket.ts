@@ -14,15 +14,7 @@ export type SocketMessageContract = {
 
 export class Socket {
   socket: WebSocket | null;
-  private userId: number;
-  private chatId: number;
-  private token: string;
-
   constructor(userId: number, chatId: number, token: string) {
-    this.userId = userId;
-    this.chatId = chatId;
-    this.token = token;
-
     if (this.socket?.readyState === WebSocket.OPEN) {
       this._disconnect();
     }
@@ -54,17 +46,20 @@ export class Socket {
     });
 
     this.socket?.addEventListener("message", (event) => {
-      const data = JSON.parse(event.data) as SocketMessageContract;
+      try {
+        const data = JSON.parse(event.data) as SocketMessageContract;
+        if (data.type === "user connected") return;
 
-      if (data.type === "user connected") return;
+        const messages = Array.isArray(data) ? data : [data];
+        messages.sort(
+          (left, right) =>
+            new Date(left.time).getTime() - new Date(right.time).getTime()
+        );
 
-      const messages = Array.isArray(data) ? data : [data];
-      messages.sort(
-        (left, right) =>
-          new Date(left.time).getTime() - new Date(right.time).getTime()
-      );
-
-      Actions.setMessages(messages);
+        Actions.setMessages(messages);
+      } catch (e) {
+        console.error(`При парсинге данных произошла ошибка ${e}`);
+      }
     });
   }
 

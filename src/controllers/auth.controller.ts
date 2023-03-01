@@ -1,11 +1,10 @@
-import { router } from "..";
 import {
   SigninRequestContract,
   SignupRequestContract,
   authApi,
 } from "../api/auth.api";
 import { Actions } from "../core";
-import { ROUTE_NAMES } from "../routing";
+import { Router, ROUTE_NAMES } from "../routing";
 import { chatsController } from "./chats.controller";
 
 class AuthController {
@@ -15,7 +14,7 @@ class AuthController {
       const { response } = await authApi.getUserInfo();
       Actions.setProfile(response);
       await chatsController.getChats();
-      router.go(ROUTE_NAMES.BASE);
+      Router._instance.go(ROUTE_NAMES.MESSENGER);
     } catch (e) {
       console.error(e.response.reason);
     }
@@ -27,7 +26,7 @@ class AuthController {
       const { response } = await authApi.getUserInfo();
       Actions.setProfile(response);
       await chatsController.getChats();
-      router.go(ROUTE_NAMES.BASE);
+      Router._instance.go(ROUTE_NAMES.MESSENGER);
     } catch (e) {
       console.error(e.response.reason);
     }
@@ -38,7 +37,7 @@ class AuthController {
       const { response } = await authApi.getUserInfo();
       Actions.setProfile(response);
       await chatsController.getChats();
-      router.go(ROUTE_NAMES.BASE);
+      Router._instance.go(ROUTE_NAMES.MESSENGER);
     } catch (e) {
       console.error(e.response.reason);
     }
@@ -46,8 +45,8 @@ class AuthController {
 
   async logout() {
     await authApi.logout();
-    router.go(ROUTE_NAMES.LOGIN);
     Actions.clearState();
+    Router._instance.go(ROUTE_NAMES.BASE);
   }
 }
 

@@ -19,19 +19,19 @@ class Route {
   _blockClass: any;
   _block: Block<Props> | null;
   _props: Props;
-  _guard?: () => boolean;
+  _redirectFn?: () => boolean;
 
   constructor(
     pathname: string,
     view: Block,
     props: Props,
-    guard?: () => boolean
+    redirectFn?: () => boolean
   ) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;
     this._props = props;
-    this._guard = guard;
+    this._redirectFn = redirectFn;
   }
 
   navigate(pathname: string) {
@@ -82,7 +82,12 @@ export class Router {
     Router._instance = this;
   }
 
-  use(pathname: string, block: any, props: Props = {}, guard?: () => boolean) {
+  use(
+    pathname: string,
+    block: any,
+    props: Props = {},
+    redirectFn?: () => boolean
+  ) {
     const route = new Route(
       pathname,
       block,
@@ -90,7 +95,7 @@ export class Router {
         ...props,
         rootQuery: this._rootQuery,
       },
-      guard
+      redirectFn
     );
     this.routes.push(route);
     return this;
@@ -105,15 +110,14 @@ export class Router {
 
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
+
     if (!route) {
       this.go(ROUTE_NAMES.ERROR404);
 
       return;
     }
 
-    if (route._guard?.()) {
-      this.go(ROUTE_NAMES.LOGIN);
-
+    if (route._redirectFn?.()) {
       return;
     }
 

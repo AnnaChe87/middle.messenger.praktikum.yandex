@@ -16,10 +16,10 @@ export enum STORE_KEYS {
   MESSAGES = "messages",
 }
 
-type CurrentChatStoreContract = {
+export type CurrentChatStoreContract = ChatResponseContract & {
   token: string;
-  id: number;
   users: Record<number, UserResponseContract>;
+  isCurrent: boolean;
 };
 
 export type MessageStoreContract = {
@@ -58,13 +58,23 @@ export class Store extends EventBus<EVENTS> {
 
     const savedState = localStorage.getItem(Store.STORE_NAME);
 
-    this._state = savedState ? JSON.parse(savedState) ?? {} : STATE_DEFAULT;
+    let data: StoreState = STATE_DEFAULT;
 
-    Store._instance = this;
+    try {
+      data = savedState ? JSON.parse(savedState) ?? {} : STATE_DEFAULT;
+    } catch (e) {
+      console.log(
+        `При попытке использовать сохраненные данные произошла ошибка ${e}`
+      );
+    } finally {
+      this._state = data;
 
-    this.on(EVENTS.UPDATE, () => {
-      localStorage.setItem(Store.STORE_NAME, JSON.stringify(this._state));
-    });
+      Store._instance = this;
+
+      this.on(EVENTS.UPDATE, () => {
+        localStorage.setItem(Store.STORE_NAME, JSON.stringify(this._state));
+      });
+    }
   }
 
   getState(): StoreState {

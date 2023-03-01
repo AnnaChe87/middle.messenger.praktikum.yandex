@@ -8,8 +8,7 @@
     "start": "parcel src/index.html --no-cache --open --port=3000",
     "build": "parcel build src/index.html",
     "lint": "node_modules/.bin/eslint .",
-    "fix": "node_modules/.bin/eslint . --fix",
-    "sand": "parcel src/sandbox.html --no-cache --open --port=3000"
+    "fix": "node_modules/.bin/eslint . --fix"
   },
   "keywords": [],
   "author": "",

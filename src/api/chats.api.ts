@@ -27,8 +27,10 @@ export type ChatResponseContract = {
   id: number;
   title: string;
   avatar: string;
+  isCurrent: boolean;
   unread_count: number;
   last_message: LastMessageResponseContract;
+  created_by: number;
 };
 
 export class ChatsApi {

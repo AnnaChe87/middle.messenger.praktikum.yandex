@@ -4,8 +4,10 @@ import {
   UsersChatRequestContract,
   chatsApi,
   profileApi,
+  ChatResponseContract,
 } from "../api";
 import { Actions } from "../core";
+import { getImgSrc, getUsersMap } from "../utils";
 
 class ChatsController {
   async getChats(data?: ChatsRequestContract) {
@@ -28,8 +30,12 @@ class ChatsController {
     }
   }
 
-  async deleteChat(id: number) {
+  async deleteChat() {
     try {
+      const id = Actions.getCurrentChat()?.id;
+      console.log(id);
+      if (!id) return;
+
       await chatsApi.deleteChatById(id);
       this.getChats();
     } catch (e) {
@@ -47,7 +53,7 @@ class ChatsController {
       };
       await chatsApi.addUsers(data);
       const { response: usersResponse } = await chatsApi.getUsers(data.chatId);
-      Actions.updateCurrentChatUsers(usersResponse);
+      Actions.updateCurrentChat({ users: getUsersMap(usersResponse) });
     } catch (e) {
       console.log(e.response.reason);
     }
@@ -62,18 +68,23 @@ class ChatsController {
       };
       await chatsApi.deleteUsers(data);
       const { response: usersResponse } = await chatsApi.getUsers(data.chatId);
-      Actions.updateCurrentChatUsers(usersResponse);
+      Actions.updateCurrentChat({ users: getUsersMap(usersResponse) });
     } catch (e) {
       console.log(e.response.reason);
     }
   }
 
-  async getTokenByChatId(id: number) {
+  async getTokenByChat(chat: ChatResponseContract) {
     try {
-      const { response } = await chatsApi.getTokenByChatId(id);
-      const { response: usersResponse } = await chatsApi.getUsers(id);
+      const { response } = await chatsApi.getTokenByChatId(chat.id);
+      const { response: usersResponse } = await chatsApi.getUsers(chat.id);
 
-      Actions.setCurrentChat(id, response.token, usersResponse);
+      Actions.setCurrentChat({
+        ...chat,
+        token: response.token,
+        avatar: chat.avatar && getImgSrc(chat.avatar),
+        users: getUsersMap(usersResponse),
+      });
     } catch (e) {
       console.log(e.response.reason);
     }
