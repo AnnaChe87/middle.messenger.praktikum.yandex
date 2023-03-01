@@ -33,7 +33,6 @@ class ChatsController {
   async deleteChat() {
     try {
       const id = Actions.getCurrentChat()?.id;
-      console.log(id);
       if (!id) return;
 
       await chatsApi.deleteChatById(id);

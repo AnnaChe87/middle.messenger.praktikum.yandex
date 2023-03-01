@@ -47,7 +47,6 @@ export function onDeleteChat(onSubmit: () => void = () => {}): ModalProps {
         type: "submit",
       }),
       handleSubmit: () => {
-        console.log("1");
         chatsController.deleteChat();
         onSubmit();
       },
